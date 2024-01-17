@@ -1,0 +1,19 @@
+# ninja log v5
+5	183	1705420886111627135	CMakeFiles/trucker_game.dir/engine/entity/Entity.cpp.o	8431ffab71e87d37
+5	183	1705420886111623801	CMakeFiles/trucker_game.dir/engine/entity/World.cpp.o	4f15ee42e8aacc5d
+4	484	1705499682990303150	CMakeFiles/trucker_game.dir/main.cpp.o	ec767bf71f8c8b40
+17	208	1705421321648891906	CMakeFiles/trucker_game.dir/game/system/OpenGLSystem.cpp.o	78805212b9e63ae
+1	46	1705502854085161714	build.ninja	28fe71356dd42562
+484	522	1705499683028850922	trucker_game	7c134df45343405
+18	593	1705421540489597630	CMakeFiles/trucker_game.dir/engine/Engine.cpp.o	7d08a086ece31579
+16	183	1705418522174159062	CMakeFiles/trucker_game.dir/engine/system/System.cpp.o	3cdd9da570c1ec71
+0	50	1705502854085161714	build.ninja	28fe71356dd42562
+5	4118	1705502858209508180	CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o	cd16e186035045c
+4	4510	1705502858599125554	CMakeFiles/trucker_game.dir/main.cpp.o	86909f0205f8fa27
+4	4510	1705502858600318937	CMakeFiles/trucker_game.dir/engine/EntityManager.cpp.o	74560c49a42abdba
+5	477	1705503828632142425	CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o	cd16e186035045c
+5	477	1705503828632141174	CMakeFiles/trucker_game.dir/engine/ComponentManager.cpp.o	b18a612d0c93fb55
+477	3035	1705503831192226053	trucker_game	b50bae0ae14704ea
+5	543	1705504150286063965	CMakeFiles/trucker_game.dir/engine/ComponentManager.cpp.o	b18a612d0c93fb55
+6	544	1705504150286064923	CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o	cd16e186035045c
+544	586	1705504150331348419	trucker_game	b50bae0ae14704ea
