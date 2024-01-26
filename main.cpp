@@ -11,6 +11,7 @@ int main() {
 
     auto openGLSystem = new OpenGLRenderingSystem;
     ecs->registerSystem(COSMETIC_LAYER, openGLSystem);
+    openGLSystem->init();
 
     Entity e1 = ecs->createEntity();
     ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 10.0f});

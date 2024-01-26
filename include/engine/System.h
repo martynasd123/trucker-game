@@ -9,6 +9,7 @@ protected:
 public:
     const SystemSignature mSignature;
     virtual void update(long dt, std::vector<Entity> entities) = 0;
+    virtual void init() = 0;
 };
 
 template<class... C>
