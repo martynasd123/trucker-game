@@ -5,5 +5,4 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(include)
 file(GLOB_RECURSE SUBDIR_SOURCES "src/*.cpp")
-add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp
-        include/game/Globals.h)
+add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp)
