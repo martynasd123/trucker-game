@@ -49,29 +49,40 @@ cmake_ninja_workdir = /Users/martynasdargis/CLionProjects/trucker-game/cmake-bui
 
 build cmake_object_order_depends_target_trucker_game: phony || CMakeFiles/trucker_game.dir
 
+build CMakeFiles/trucker_game.dir/src/common/math/Vector3f.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector3f.cpp || cmake_object_order_depends_target_trucker_game
+  DEP_FILE = CMakeFiles/trucker_game.dir/src/common/math/Vector3f.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/martynasdargis/CLionProjects/trucker-game/include
+  OBJECT_DIR = CMakeFiles/trucker_game.dir
+  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/src/common/math
+
+build CMakeFiles/trucker_game.dir/src/engine/Component.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/src/engine/Component.cpp || cmake_object_order_depends_target_trucker_game
+  DEP_FILE = CMakeFiles/trucker_game.dir/src/engine/Component.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/martynasdargis/CLionProjects/trucker-game/include
+  OBJECT_DIR = CMakeFiles/trucker_game.dir
+  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/src/engine
+
+build CMakeFiles/trucker_game.dir/src/engine/ECS.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/src/engine/ECS.cpp || cmake_object_order_depends_target_trucker_game
+  DEP_FILE = CMakeFiles/trucker_game.dir/src/engine/ECS.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/martynasdargis/CLionProjects/trucker-game/include
+  OBJECT_DIR = CMakeFiles/trucker_game.dir
+  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/src/engine
+
+build CMakeFiles/trucker_game.dir/src/game/system/OpenGLRenderingSystem.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/src/game/system/OpenGLRenderingSystem.cpp || cmake_object_order_depends_target_trucker_game
+  DEP_FILE = CMakeFiles/trucker_game.dir/src/game/system/OpenGLRenderingSystem.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/martynasdargis/CLionProjects/trucker-game/include
+  OBJECT_DIR = CMakeFiles/trucker_game.dir
+  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/src/game/system
+
 build CMakeFiles/trucker_game.dir/main.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/main.cpp || cmake_object_order_depends_target_trucker_game
   DEP_FILE = CMakeFiles/trucker_game.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/martynasdargis/CLionProjects/trucker-game/include
   OBJECT_DIR = CMakeFiles/trucker_game.dir
   OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir
-
-build CMakeFiles/trucker_game.dir/engine/EntityManager.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/engine/EntityManager.cpp || cmake_object_order_depends_target_trucker_game
-  DEP_FILE = CMakeFiles/trucker_game.dir/engine/EntityManager.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
-  OBJECT_DIR = CMakeFiles/trucker_game.dir
-  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/engine
-
-build CMakeFiles/trucker_game.dir/engine/ComponentManager.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/engine/ComponentManager.cpp || cmake_object_order_depends_target_trucker_game
-  DEP_FILE = CMakeFiles/trucker_game.dir/engine/ComponentManager.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
-  OBJECT_DIR = CMakeFiles/trucker_game.dir
-  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/engine
-
-build CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o: CXX_COMPILER__trucker_game_unscanned_Debug /Users/martynasdargis/CLionProjects/trucker-game/engine/ComponentArray.cpp || cmake_object_order_depends_target_trucker_game
-  DEP_FILE = CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
-  OBJECT_DIR = CMakeFiles/trucker_game.dir
-  OBJECT_FILE_DIR = CMakeFiles/trucker_game.dir/engine
 
 
 # =============================================================================
@@ -81,7 +92,7 @@ build CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o: CXX_COMPILER__tru
 #############################################
 # Link the executable trucker_game
 
-build trucker_game: CXX_EXECUTABLE_LINKER__trucker_game_Debug CMakeFiles/trucker_game.dir/main.cpp.o CMakeFiles/trucker_game.dir/engine/EntityManager.cpp.o CMakeFiles/trucker_game.dir/engine/ComponentManager.cpp.o CMakeFiles/trucker_game.dir/engine/ComponentArray.cpp.o
+build trucker_game: CXX_EXECUTABLE_LINKER__trucker_game_Debug CMakeFiles/trucker_game.dir/src/common/math/Vector3f.cpp.o CMakeFiles/trucker_game.dir/src/engine/Component.cpp.o CMakeFiles/trucker_game.dir/src/engine/ECS.cpp.o CMakeFiles/trucker_game.dir/src/game/system/OpenGLRenderingSystem.cpp.o CMakeFiles/trucker_game.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/trucker_game.dir
   POST_BUILD = :
