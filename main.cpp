@@ -3,7 +3,34 @@
 #include "game/component/RenderComponent.h"
 #include "game/system/OpenGLRenderingSystem.h"
 
+#include <thread>
+
 ECS* ecs = new ECS;
+
+void loop() {
+    using namespace std::chrono;
+
+    const static auto TIME_PER_STEP = milliseconds(1000L / 60L);
+    const static auto TARGET_RENDER_PERIOD = milliseconds(1000L / 120L);
+
+    auto gameTime = high_resolution_clock::now();
+    auto renderTime = high_resolution_clock::now();
+    while (true) {
+        auto currentTime = high_resolution_clock::now();
+        while (currentTime <= gameTime) {
+            gameTime += TIME_PER_STEP;
+            ecs->runSystems(PHYSICS_LAYER | GAME_LOGIC_LAYER,
+                            duration_cast<duration<float>>(TIME_PER_STEP).count());
+        }
+        currentTime = high_resolution_clock::now();
+        if (currentTime - renderTime < TARGET_RENDER_PERIOD) {
+            std::this_thread::sleep_for((renderTime + TARGET_RENDER_PERIOD) - currentTime);
+            currentTime = high_resolution_clock::now();
+        }
+        ecs->runSystems(COSMETIC_LAYER, duration_cast<duration<float>>(currentTime - renderTime).count());
+        renderTime = currentTime;
+    }
+}
 
 int main() {
     ecs->registerComponent<PositionComponent>();
@@ -17,8 +44,7 @@ int main() {
     ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 10.0f});
     ecs->addComponent<RenderComponent>(e1);
 
-
-    ecs->runSystems(COSMETIC_LAYER | PHYSICS_LAYER | GAME_LOGIC_LAYER, 0.0f);
+    loop();
 
     delete ecs;
 

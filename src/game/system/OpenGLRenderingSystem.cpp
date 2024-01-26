@@ -25,9 +25,9 @@ void OpenGLRenderingSystem::init() {
 }
 
 void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) {
-    std::cout << "Update func called" << std::endl;
-//    if (!glfwWindowShouldClose(window)) {
-//        glfwSwapBuffers(window);
-//        glfwPollEvents();
-//    }
+    if (glfwWindowShouldClose(window)) {
+        exit(0);
+    }
+    glfwSwapBuffers(window);
+    glfwPollEvents();
 }
