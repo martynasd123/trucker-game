@@ -114,3 +114,20 @@ void ECS::runSystems(SystemLayer layer, float dt) {
         }
     }
 }
+
+ECS::~ECS() {
+    for (const auto &archetype: mArchetypes) {
+        for (const auto &componentEntry: archetype->mComponentData) {
+            ComponentBase* comp = mComponents[componentEntry.first];
+            for (int i = 0; i < archetype->mEntities.size(); ++i) {
+                char* ptr = componentEntry.second + (comp->GetSize() * i);
+                comp->DestroyData(ptr);
+                delete ptr;
+            }
+        }
+        delete archetype;
+    }
+    for (const auto &item: mComponents) {
+        delete item.second;
+    }
+}

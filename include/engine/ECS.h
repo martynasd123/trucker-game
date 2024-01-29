@@ -116,6 +116,8 @@ public:
      * @param dt Time step
      */
     void runSystems(SystemLayer layer, float dt);
+
+    virtual ~ECS();
 };
 
 #include "ECS.tpp"

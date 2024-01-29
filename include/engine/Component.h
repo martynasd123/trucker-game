@@ -12,6 +12,7 @@ public:
     virtual void DestroyData(char* loc) = 0;
     virtual void Initialize(char* loc) = 0;
     virtual void MoveData(char* src, char* dst) = 0;
+    virtual ~ComponentBase() = default;
 };
 
 template<class C>
@@ -27,6 +28,7 @@ public:
                                                       : (mLastComponentTypeId << 1);
         return id;
     }
+    ~Component() override = default;
 };
 
 #include "Component.tpp"
