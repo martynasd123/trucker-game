@@ -1,4 +1,4 @@
-#include "game/common/math/Vector3f.h"
+#include "common/math/Vector3f.h"
 
 float Vector3f::getX() const {
     return _x;

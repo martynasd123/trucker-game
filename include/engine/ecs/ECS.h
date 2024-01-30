@@ -2,7 +2,7 @@
 #define TRUCKER_GAME_ECS_H
 
 
-#include "engine/Types.h"
+#include "Types.h"
 #include "Component.h"
 #include "Archetype.h"
 #include "System.h"

@@ -1,3 +1,3 @@
-#include "engine/Component.h"
+#include "engine/ecs/Component.h"
 
 ComponentSignature ComponentBase::mLastComponentTypeId = 0;

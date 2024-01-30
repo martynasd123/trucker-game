@@ -1,7 +1,7 @@
 #ifndef TRUCKER_GAME_ARCHETYPE_H
 #define TRUCKER_GAME_ARCHETYPE_H
 
-#include <engine/Types.h>
+#include "Types.h"
 
 class Archetype {
 public:

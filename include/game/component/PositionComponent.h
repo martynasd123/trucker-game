@@ -1,7 +1,7 @@
 #ifndef TRUCKER_GAME_POSITIONCOMPONENT_H
 #define TRUCKER_GAME_POSITIONCOMPONENT_H
 
-#include "game/common/math/Vector3f.h"
+#include "common/math/Vector3f.h"
 
 struct PositionComponent {
 public:

@@ -1,7 +1,7 @@
 #ifndef TRUCKER_GAME_OPENGLRENDERINGSYSTEM_H
 #define TRUCKER_GAME_OPENGLRENDERINGSYSTEM_H
 
-#include "engine/System.h"
+#include "engine/ecs/System.h"
 #include "game/component/PositionComponent.h"
 #include "game/component/RenderComponent.h"
 #include <glad/glad.h>

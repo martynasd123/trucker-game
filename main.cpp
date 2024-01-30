@@ -1,7 +1,11 @@
-#include "engine/ECS.h"
+#include "engine/ecs/ECS.h"
 #include "game/component/PositionComponent.h"
 #include "game/component/RenderComponent.h"
 #include "game/system/OpenGLRenderingSystem.h"
+#include "common/math/Vector3f.h"
+#include "engine/resource/manager/ResourceManager.h"
+#include "engine/resource/TextResource.h"
+#include "engine/resource/resolver/TextResourceResolver.h"
 
 #include <thread>
 
@@ -33,6 +37,10 @@ void loop() {
 }
 
 int main() {
+    auto resManager = ResourceManager();
+
+    resManager.registerResourceResolver<TextResourceResolver>();
+
     ecs->registerComponent<PositionComponent>();
     ecs->registerComponent<RenderComponent>();
 
@@ -47,6 +55,5 @@ int main() {
     loop();
 
     delete ecs;
-
     return 0;
 }

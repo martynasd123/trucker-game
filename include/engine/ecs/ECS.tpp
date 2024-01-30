@@ -1,5 +1,5 @@
-#include "engine/Types.h"
-#include "engine/Component.h"
+#include "Types.h"
+#include "Component.h"
 #include "ECS.h"
 
 template<class C>
