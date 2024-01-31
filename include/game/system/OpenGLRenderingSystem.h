@@ -13,6 +13,8 @@ private:
 public:
     void init() override;
     void update(long dt, std::vector<Entity> entities) override;
+    void entityRemoved(Entity entity) override;
+    void entityAdded(Entity entity) override;
 };
 
 

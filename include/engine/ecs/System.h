@@ -9,7 +9,12 @@ protected:
 public:
     const SystemSignature mSignature;
     virtual void update(long dt, std::vector<Entity> entities) = 0;
+    virtual void entityRemoved(Entity entity) = 0;
+    virtual void entityAdded(Entity entity) = 0;
     virtual void init() = 0;
+    const bool doesCareAbout(ArchetypeSignature archetypeSignature) {
+        return (archetypeSignature & mSignature) == mSignature;
+    }
 };
 
 template<class... C>

@@ -62,10 +62,18 @@ void ECS::removeComponent(Entity entity) {
     verifyEntityHasComponent<C>(entity, componentTypeId);
 
     EntityArchetypeReference ref = mEntityArchetypeMap[entity];
-    Archetype* newArchetype = getArchetype(ref.archetype->mSignature & componentTypeId.flip());
+    Archetype* newArchetype = getArchetype(ref.archetype->mSignature & ComponentSignature (componentTypeId).flip());
     ensureCapacity(newArchetype, newArchetype->mCapacity + 1);
 
     moveEntity(ref.archetype, ref.index, newArchetype);
+    // Notify systems that entity left archetype
+    for (const auto &entry: mSystemEntries) {
+        if ((entry.system->mSignature & componentTypeId) != 0
+            && entry.system->doesCareAbout(ref.archetype->mSignature)) {
+            entry.system->entityRemoved(entity);
+        }
+    }
+
     if (ref.archetype->mEntities.empty()) {
         deleteArchetype(ref.archetype);
     }
@@ -109,4 +117,12 @@ void ECS::addComponent(Entity entity, Args &&... args) {
         newArchetype->mEntities.push_back(entity);
     }
     new(newArchetype->mComponentData[componentTypeId] + (newArchetype->mEntities.size() - 1) * comp->GetSize()) C(args...);
+
+    // Notify systems that entity joined archetype
+    for (const auto &entry: mSystemEntries) {
+        if ((entry.system->mSignature & componentTypeId) != 0
+            && entry.system->doesCareAbout(newArchetype->mSignature)) {
+            entry.system->entityAdded(entity);
+        }
+    }
 }

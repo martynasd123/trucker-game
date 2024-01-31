@@ -107,7 +107,7 @@ void ECS::runSystems(SystemLayer layer, float dt) {
     for (const auto &entry: mSystemEntries) {
         if ((entry.layer & layer) != 0) {
             for (const auto &archetype: mArchetypes) {
-                if ((archetype->mSignature & entry.system->mSignature) != 0) {
+                if (entry.system->doesCareAbout(archetype->mSignature)) {
                     entry.system->update(dt, archetype->mEntities);
                 }
             }

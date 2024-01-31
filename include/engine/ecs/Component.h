@@ -3,6 +3,7 @@
 
 
 #include "Types.h"
+#include <iostream>
 
 class ComponentBase {
 protected:
@@ -25,7 +26,7 @@ public:
     ComponentSignature getComponentTypeId() {
         static const std::bitset<MAX_COMPONENTS> id = (mLastComponentTypeId == 0)
                                                       ? (mLastComponentTypeId = 1)
-                                                      : (mLastComponentTypeId << 1);
+                                                      : (mLastComponentTypeId = mLastComponentTypeId << 1);
         return id;
     }
     ~Component() override = default;

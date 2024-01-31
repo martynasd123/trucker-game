@@ -31,3 +31,11 @@ void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) 
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
+
+void OpenGLRenderingSystem::entityRemoved(Entity entity) {
+    std::cout << "Entity removed" << std::endl;
+}
+
+void OpenGLRenderingSystem::entityAdded(Entity entity) {
+    std::cout << "Entity added" << std::endl;
+}
