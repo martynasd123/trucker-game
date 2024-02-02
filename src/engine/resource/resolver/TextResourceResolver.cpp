@@ -29,5 +29,5 @@ TextResource TextResourceResolver::resolveResource(ResourcePath resPath) {
 }
 
 void TextResourceResolver::destroyResource(TextResource resource) {
-
+    resource.~TextResource();
 }
