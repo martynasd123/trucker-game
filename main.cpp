@@ -6,6 +6,7 @@
 #include "engine/resource/manager/ResourceManager.h"
 #include "engine/resource/TextResource.h"
 #include "engine/resource/resolver/TextResourceResolver.h"
+#include "engine/resource/resolver/MeshResourceResolver.h"
 
 #include <thread>
 
@@ -40,6 +41,7 @@ int main() {
     auto resManager = ResourceManager();
 
     resManager.registerResourceResolver<TextResourceResolver>();
+    resManager.registerResourceResolver<MeshResourceResolver>();
 
     ecs->registerComponent<PositionComponent>();
     ecs->registerComponent<RenderComponent>();
@@ -49,7 +51,7 @@ int main() {
     openGLSystem->init();
 
     Entity e1 = ecs->createEntity();
-    ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 10.0f});
+    ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 10.0f, 0.0f});
     ecs->addComponent<RenderComponent>(e1);
 
     loop();

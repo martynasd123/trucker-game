@@ -5,7 +5,7 @@
 
 struct PositionComponent {
 public:
-    Vector3f pos = {0.0f, 0.0f};
+    Vector3f pos = {0.0f, 0.0f, 0.0f};
     explicit PositionComponent(Vector3f pPos) : pos(pPos) {}
     PositionComponent() = default;
 };

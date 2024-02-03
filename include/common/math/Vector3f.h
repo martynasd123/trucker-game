@@ -4,13 +4,15 @@
 
 class Vector3f {
 private:
-    float _x, _y;
+    float _x, _y, _z;
 public:
-    Vector3f(float x, float y) : _x(x), _y(y) {}
+    Vector3f(float x, float y, float z) : _x(x), _y(y), _z(z) {}
 
     [[nodiscard]] float getX() const;
 
     [[nodiscard]] float getY() const;
+
+    [[nodiscard]] float getZ() const;
 };
 
 

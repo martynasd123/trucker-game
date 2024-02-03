@@ -34,6 +34,10 @@ if(NOT glad_POPULATED)
     add_subdirectory(${glad_SOURCE_DIR} ${glad_BINARY_DIR})
 endif()
 
+# Set up nlohmann/json
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 project(trucker_game)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -45,4 +49,4 @@ add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp)
 # Copy the assets dir
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(trucker_game glfw glad)
+target_link_libraries(trucker_game glfw glad nlohmann_json::nlohmann_json)
