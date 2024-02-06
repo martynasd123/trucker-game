@@ -4,6 +4,8 @@
 #include "common/math/Vector3f.h"
 #include "common/math/Vector2f.h"
 #include "engine/resource/Types.h"
+#include "common/render/Material.h"
+#include <utility>
 #include <vector>
 
 using namespace std;
@@ -24,15 +26,44 @@ struct Triangle {
     }
 };
 
+struct Group {
+    // Each element is an index of the mesh primitives array
+    vector<int> primitives;
+    std::string name;
+
+    Group(const vector<int> &primitives, string name) : primitives(primitives), name(std::move(name)) {}
+};
+
+struct GroupMapping {
+    vector<std::string> groups;
+
+    explicit GroupMapping(const vector<std::string> &groups) : groups(groups) {}
+};
+
 struct Mesh {
     vector<Vector3f> positions;
     vector<Vector3f> normals;
     vector<Vector2f> uvCoordinates;
+    // List of triangles, each defined by three vertices
+    vector<Triangle> primitives;
+    // List of primitive groups
+    vector<Group> groups;
     // List of materials
-    vector<ResourcePath> materials;
-    // Each nth outer vector element corresponds to nth material
-    // The inner vector holds all primitives for that material
-    vector<vector<Triangle>> indices;
+    vector<Material*> materials;
+    // Each element maps nth material to the list of groups
+    vector<GroupMapping> materialMappings;
+
+    template<typename T, typename... Args>
+    void addMaterial(Args&&... args) {
+        T* ref = new T(args...);
+        materials.push_back(ref);
+    }
+
+    virtual ~Mesh() {
+        for (const auto &mat: materials) {
+            delete mat;
+        }
+    }
 };
 
 #endif //TRUCKER_GAME_MESH_H

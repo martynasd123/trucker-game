@@ -43,6 +43,11 @@ int main() {
     resManager.registerResourceResolver<TextResourceResolver>();
     resManager.registerResourceResolver<MeshResourceResolver>();
 
+    auto handle = resManager.acquireHandle<MeshResource>("assets/meshes/cube.mesh");
+    auto mesh = resManager.getResource<MeshResource>(handle);
+
+    resManager.releaseResource(handle);
+
     ecs->registerComponent<PositionComponent>();
     ecs->registerComponent<RenderComponent>();
 
