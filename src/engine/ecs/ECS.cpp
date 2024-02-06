@@ -106,11 +106,15 @@ void ECS::deleteArchetype(Archetype *archetype) {
 void ECS::runSystems(SystemLayer layer, float dt) {
     for (const auto &entry: mSystemEntries) {
         if ((entry.layer & layer) != 0) {
+            std::vector<Entity> entities;
             for (const auto &archetype: mArchetypes) {
                 if (entry.system->doesCareAbout(archetype->mSignature)) {
-                    entry.system->update(dt, archetype->mEntities);
+                    for (const auto &entity: archetype->mEntities) {
+                        entities.push_back(entity);
+                    }
                 }
             }
+            entry.system->update(dt, entities);
         }
     }
 }
