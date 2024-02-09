@@ -53,6 +53,15 @@ struct Mesh {
     // Each element maps nth material to the list of groups
     vector<GroupMapping> materialMappings;
 
+    Group const* getGroupByName(string name) {
+        for (const auto &group: groups) {
+            if (group.name == name) {
+                return &group;
+            }
+        }
+        return nullptr;
+    }
+
     template<typename T, typename... Args>
     void addMaterial(Args&&... args) {
         T* ref = new T(args...);

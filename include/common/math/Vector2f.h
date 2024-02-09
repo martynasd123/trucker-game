@@ -6,6 +6,8 @@ class Vector2f {
 private:
     float _x, _y;
 public:
+    Vector2f() : _x(0.0f), _y(0.0f) {}
+
     Vector2f(float x, float y) : _x(x), _y(y) {}
 
     [[nodiscard]] float getX() const;

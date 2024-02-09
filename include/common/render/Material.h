@@ -2,7 +2,7 @@
 #define TRUCKER_GAME_MATERIAL_H
 
 struct Material {
-
+    virtual std::string getTypeString();
 };
 
 struct BPMonochromaticMaterial: public Material {
@@ -11,6 +11,10 @@ struct BPMonochromaticMaterial: public Material {
     Vector3f specular;
     float shininess;
     Vector3f color;
+
+    std::string getTypeString() override {
+        return "bp-monochromatic";
+    }
 
     BPMonochromaticMaterial(float ambient, float diffuse, const Vector3f &specular, float shininess,
                             const Vector3f &color) : ambient(ambient), diffuse(diffuse), specular(specular),
