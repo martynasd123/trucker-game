@@ -7,3 +7,7 @@ float Vector3f::getX() const {
 float Vector3f::getY() const {
     return _y;
 }
+
+float Vector3f::getZ() const {
+    return _z;
+}

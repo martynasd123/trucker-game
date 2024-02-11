@@ -1,12 +1,15 @@
 
-template<typename T, typename... Args>
+#include "engine/resource/TextResource.h"
+#include "engine/resource/MeshResource.h"
+
+template<typename ResolverType, typename ResourceType, typename... Args>
 void ResourceManager::registerResourceResolver(Args&&... args) {
-    mResourceResolvers[ResolverIDMapper<T>().getId()] = new T (args...);
+    mResourceResolvers[ResolverIDMapper().getId<ResourceType>()] = new ResolverType (args...);
 }
 
 template<typename T>
 ResourceHandle ResourceManager::acquireHandle(std::string path) {
-    auto resolverId = ResolverIDMapper<T>().getId();
+    auto resolverId = ResolverIDMapper().getId<T>();
     auto* resolver = reinterpret_cast<ResourceResolver<T>*>(mResourceResolvers[resolverId]);
     auto resSignature = ResourceSignature(path, resolverId);
 

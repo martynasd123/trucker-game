@@ -14,7 +14,12 @@ private:
     void createMaterialBasedBatch(string materialType, Mesh* mesh);
 public:
     ObjectBasedBatch(Mesh* mesh, Transform transform);
-    void draw() override;
+
+    void setTransform(const Transform transform);
+
+    const Transform &getTransform() const;
+
+    const vector<MaterialBasedBatch *> &getMaterialBatches() const;
 };
 
 

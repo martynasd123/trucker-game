@@ -1,7 +1,3 @@
-//
-// Created by Martynas Dargis on 03.02.24.
-//
-
 #ifndef TRUCKER_GAME_MESHRESOURCE_H
 #define TRUCKER_GAME_MESHRESOURCE_H
 

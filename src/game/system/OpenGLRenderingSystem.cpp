@@ -1,34 +1,42 @@
 #include "game/system/OpenGLRenderingSystem.h"
 #include <iostream>
-#include "game/Globals.h"
+
 
 void OpenGLRenderingSystem::init() {
-    glfwInit();
+    if (!glfwInit()) {
+        throw runtime_error("Failed to initialize glfw");
+    }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(800, 600, "This is definitely a window", NULL, NULL);
-    if (window == nullptr) {
+    mWindow = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "This is definitely a window", NULL, NULL);
+    if (mWindow == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         exit(1);
     }
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(mWindow);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         exit(1);
     }
 
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+    mRenderer = new Renderer();
 }
 
 void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) {
-    if (glfwWindowShouldClose(window)) {
+    if (glfwWindowShouldClose(mWindow)) {
         exit(0);
     }
-    glfwSwapBuffers(window);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    mRenderer->draw();
+    glfwSwapBuffers(mWindow);
     glfwPollEvents();
 }
 
@@ -38,4 +46,12 @@ void OpenGLRenderingSystem::entityRemoved(Entity entity) {
 
 void OpenGLRenderingSystem::entityAdded(Entity entity) {
     std::cout << "Entity added" << std::endl;
+    auto renderComponent = ecs->getComponent<RenderComponent>(entity);
+    auto positionComponent = ecs->getComponent<PositionComponent>(entity);
+    if (!positionComponent || !renderComponent || !renderComponent->mesh) {
+        return;
+    }
+
+    auto transform = Transform(Quaternion::IDENTITY, positionComponent->pos, Vector3f(1.0f, 1.0f, 1.0f));
+    mRenderer->addMesh(renderComponent->mesh, transform);
 }

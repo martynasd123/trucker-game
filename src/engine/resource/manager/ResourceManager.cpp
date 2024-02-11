@@ -38,6 +38,8 @@ void ResourceManager::releaseResource(ResourceHandle resourceHandle) {
     }
 }
 
+ResourceResolverId ResolverIDMapper::nextId = 0;
+
 ResourceManager::~ResourceManager() {
     for (const auto &resource: mResources) {
         delete resource;

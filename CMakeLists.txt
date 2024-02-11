@@ -44,9 +44,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(include)
 file(GLOB_RECURSE SUBDIR_SOURCES "src/*.cpp")
-add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp
-        include/engine/graphics/opengl/buffer/VertexBufferObject3f.h
-        src/engine/graphics/opengl/buffer/VertexBufferObject3f.cpp)
+add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp)
 
 # Copy the assets dir
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

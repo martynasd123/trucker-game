@@ -1,4 +1,5 @@
 #include "engine/resource/resolver/MeshResourceResolver.h"
+#include "common/render/Material.h"
 #include <fstream>
 #include <nlohmann/json.hpp>
 

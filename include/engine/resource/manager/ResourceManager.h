@@ -31,11 +31,12 @@ namespace std {
 }
 
 
-template<typename T>
+
 class ResolverIDMapper {
 private:
-    ResourceResolverId nextId = 0;
+    static ResourceResolverId nextId;
 public:
+    template<typename T>
     ResourceResolverId getId() {
         static const ResourceResolverId id = nextId++;
         return id;
@@ -57,10 +58,12 @@ public:
     /**
      * Register a resource resolver of a given type with given arguments
      * @tparam T Type of resource the resolver will handle. Must be a derivative of ResourceResolver
+     * @tparam ResolverType The type of resource resolver
+     * @tparam ResourceType The type of resource to be resolved
      * @tparam Args Argument types to the constructor of resource resolver
      * @param args Arguments to the constructor of resource resolver
      */
-    template<typename T, typename... Args>
+    template<typename ResolverType, typename ResourceType, typename... Args>
     void registerResourceResolver(Args&&... args);
 
     /**
@@ -80,6 +83,16 @@ public:
      */
     template<typename T>
     T* getResource(ResourceHandle resourceHandle);
+
+    /**
+     * Move resource with a given handle. If it is safe to do so, the resource will be moved. Otherwise, a copy
+     * of the resource will be made and it will be moved.
+     * @tparam T Type of resource to move
+     * @param handle A valid resource handle
+     * @return Resource r-value
+     */
+    template<typename T>
+    T&& moveResource(ResourceHandle handle);
 
     /**
      * Release a resource handle

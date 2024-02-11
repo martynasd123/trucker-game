@@ -16,9 +16,7 @@ void ObjectBasedBatch::createMaterialBasedBatch(string materialType, Mesh* mesh)
     }
 }
 
-ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform) {
-    this->mTransform = transform;
-
+ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform): mTransform(transform) {
     vector<Material*> materials(mesh->materials);
 
     // Sort materials by type
@@ -30,10 +28,19 @@ ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform) {
     for (const auto &mat: materials) {
         if (mat->getTypeString() != lastMaterialType) {
             createMaterialBasedBatch(mat->getTypeString(), mesh);
+            lastMaterialType = mat->getTypeString();
         }
     }
 }
 
-void ObjectBasedBatch::draw() {
+void ObjectBasedBatch::setTransform(const Transform transform) {
+    this->mTransform = transform;
+}
 
+const Transform &ObjectBasedBatch::getTransform() const {
+    return mTransform;
+}
+
+const vector<MaterialBasedBatch *> &ObjectBasedBatch::getMaterialBatches() const {
+    return mMaterialBatches;
 }

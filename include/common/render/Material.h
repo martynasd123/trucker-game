@@ -2,7 +2,11 @@
 #define TRUCKER_GAME_MATERIAL_H
 
 struct Material {
-    virtual std::string getTypeString();
+    virtual std::string getTypeString() = 0;
+
+    virtual ~Material() {
+
+    }
 };
 
 struct BPMonochromaticMaterial: public Material {

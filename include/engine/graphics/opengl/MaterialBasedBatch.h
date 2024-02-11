@@ -4,7 +4,8 @@
 #include "Batch.h"
 
 class MaterialBasedBatch: public Batch {
-
+public:
+    virtual void draw() = 0;
 };
 
 #endif //TRUCKER_GAME_MATERIALBASEDBATCH_H

@@ -1,0 +1,7 @@
+#ifndef TRUCKER_GAME_RENDERPASS_H
+#define TRUCKER_GAME_RENDERPASS_H
+
+class RenderPass {
+};
+
+#endif //TRUCKER_GAME_RENDERPASS_H

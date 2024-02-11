@@ -1,11 +1,19 @@
 #ifndef TRUCKER_GAME_RENDERCOMPONENT_H
 #define TRUCKER_GAME_RENDERCOMPONENT_H
 
+#include "common/render/Mesh.h"
+#include "engine/resource/MeshResource.h"
 
 struct RenderComponent {
-    // TODO: add more attributes
-    bool dirty = false;
+    Mesh* mesh{};
     RenderComponent() = default;
+
+    explicit RenderComponent(MeshResource* meshResource) : mesh(new Mesh(*meshResource->mesh)) { }
+
+    virtual ~RenderComponent() {
+        delete mesh;
+        mesh = nullptr;
+    }
 };
 
 

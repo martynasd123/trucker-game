@@ -1,7 +1,6 @@
 #ifndef TRUCKER_GAME_VECTOR2F_H
 #define TRUCKER_GAME_VECTOR2F_H
 
-
 class Vector2f {
 private:
     float _x, _y;

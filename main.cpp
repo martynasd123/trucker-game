@@ -11,6 +11,7 @@
 #include <thread>
 
 ECS* ecs = new ECS;
+ResourceManager* resourceManager = new ResourceManager;
 
 void loop() {
     using namespace std::chrono;
@@ -38,15 +39,8 @@ void loop() {
 }
 
 int main() {
-    auto resManager = ResourceManager();
-
-    resManager.registerResourceResolver<TextResourceResolver>();
-    resManager.registerResourceResolver<MeshResourceResolver>();
-
-    auto handle = resManager.acquireHandle<MeshResource>("assets/meshes/cube.mesh");
-    auto mesh = resManager.getResource<MeshResource>(handle);
-
-    resManager.releaseResource(handle);
+    resourceManager->registerResourceResolver<TextResourceResolver, TextResource>();
+    resourceManager->registerResourceResolver<MeshResourceResolver, MeshResource>();
 
     ecs->registerComponent<PositionComponent>();
     ecs->registerComponent<RenderComponent>();
@@ -56,8 +50,13 @@ int main() {
     openGLSystem->init();
 
     Entity e1 = ecs->createEntity();
-    ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 10.0f, 0.0f});
-    ecs->addComponent<RenderComponent>(e1);
+    ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 0.0f, 0.0f});
+
+    auto handle = resourceManager->acquireHandle<MeshResource>("assets/meshes/cube.mesh");
+    auto mesh = resourceManager->getResource<MeshResource>(handle);
+    ecs->addComponent<RenderComponent>(e1, mesh);
+
+    resourceManager->releaseResource(handle);
 
     loop();
 
