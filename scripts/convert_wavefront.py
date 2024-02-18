@@ -1,16 +1,21 @@
 import argparse
+import os
 import json
 
 parser = argparse.ArgumentParser(description="Convert wavefront.obj files to internal mesh format")
 
 parser.add_argument("input", help="specify input file", type=argparse.FileType('r', encoding='UTF-8'))
-parser.add_argument("-m", "--material", nargs='*', help="provide materials used", default=[])
-parser.add_argument("-o", "--output", help="specify output file", type=argparse.FileType('w', encoding='UTF-8'))
+parser.add_argument("material", nargs='*', help="provide materials used", default=[])
+parser.add_argument("output", help="specify output file", type=argparse.FileType('w', encoding='UTF-8'))
 
 args = parser.parse_args()
 
 input_file = args.input
 output_file = args.output 
+material_files = {}
+
+for arg in args.material:
+    material_files[os.path.basename(arg)] = arg
 
 def get_coordinates(line):
     return list(map(lambda s: float(s.strip()), line))
@@ -18,6 +23,14 @@ def get_coordinates(line):
 geometric_vertices = []
 texture_vertices = []
 vertex_normals = []
+used_material_files = []
+used_materials = []
+primitives = []
+groups = {}
+group_id = 1
+face_no = 0
+materials = []
+material_mapping = []
 
 lines = input_file.readlines()
 for line in lines:
@@ -25,12 +38,14 @@ for line in lines:
         case "m":
             entry = line.split(' ')
             if entry[0] == "mtllib":
-                material_name = entry[1].strip()
-                if material_name in args.material:
-                    # thingy for material
-                    pass
-                else:
-                    parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
+                material_names = entry[1::]
+                for material_name in material_names:
+                    material_name = material_name.strip()
+                    try:
+                        file = open(material_files[material_name], "r")
+                        used_material_files.append(file)
+                    except:
+                        parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
             else:
                 continue
         case "v":
@@ -64,11 +79,94 @@ for line in lines:
                         parser.exit(status=0, message="Could not parse coordinates of texture vertex\n")
                 case _:
                     continue
+        case "u":
+            entry = line.split(' ')
+            if entry[0] == "usemtl":
+                if entry[1] not in used_materials:
+                    used_materials.append(entry[1])
+                    groups["group-%i" % (group_id)] = []
+                    material_mapping.append(["group-%i" % (group_id)])
+                    group_id += 1
+                    material_found = False
+
+                    for m_file in used_material_files:
+                        m_lines = m_file.readlines()
+                        for m_line in m_lines:
+                            match m_line[0]:
+                                case "n":
+                                    if material_found:
+                                        break
+                                    words = m_line.split(' ')
+                                    if words[0].strip() == "newmtl" and words[1].strip() == entry[1].strip():
+                                        curr_material = {}
+                                        curr_material["type"] = "bp-monochromatic"
+                                        material_found = True
+                                case "d":
+                                    if material_found:
+                                        words = m_line.split(' ')
+                                        curr_material["dissolve"] = float(words[1].strip())
+                                case "K":
+                                    if material_found:
+                                        words = m_line.split(' ')
+                                        match words[0]:
+                                            case "Ka":
+                                                rgb_values = get_coordinates(words[1::])
+                                                curr_material["ambient"] = rgb_values
+                                            case "Kd":
+                                                rgb_values = get_coordinates(words[1::])
+                                                curr_material["diffuse"] = rgb_values
+                                            case "Ks":
+                                                rgb_values = get_coordinates(words[1::])
+                                                curr_material["specular"] = rgb_values
+                                            case "Ke":
+                                                rgb_values = get_coordinates(words[1::])
+                                                curr_material["emissive"] = rgb_values
+                                case "N":
+                                    if material_found:
+                                        words = m_line.split(' ')
+                                        match words[0]:
+                                            case "Ns":
+                                                curr_material["shininess"] = float(words[1].strip())
+                                            case "Ni":
+                                                curr_material["refraction"] = float(words[1].strip())
+                                case "i":
+                                    if material_found:
+                                        words = m_line.split(' ')
+                                        if words[0] == "illum":
+                                            curr_material["illumination"] = float(words[1].strip())
+                                case _:
+                                    continue
+                        m_file.seek(0)
+                    if not material_found:
+                        parser.exit(status=0, message="Could not find material %s in specified material files\n" % (entry[1].strip())) 
+                    materials.append(curr_material)
+                else:
+                    index = used_materials.index(entry[1])
+                    groups["group-%i" % (group_id)] = []
+                    material_mapping[index].append("group-%i" % (group_id))
+                    group_id += 1
+            else:
+                continue
+        case "f":
+            entry = line.split(' ')
+            face = []
+            references = entry[1::]
+            for reference in references:
+                reference = reference.strip()
+                numbers = list(map(lambda s: int(s.strip()) - 1, reference.split("/")))
+                face.append(numbers)
+            primitives.append(face)
+            groups["group-%i" % (group_id - 1)].append(face_no)
+            face_no += 1
         case _:
             continue
 
 data = {"positions": geometric_vertices, 
         "normals": vertex_normals, 
-        "uv": texture_vertices}
+        "uv": texture_vertices,
+        "primitives": primitives,
+        "groups": groups,
+        "materials": materials,
+        "material_mapping": material_mapping}
 
 json.dump(data, output_file, ensure_ascii=False, indent=2)
