@@ -5,7 +5,7 @@ import json
 parser = argparse.ArgumentParser(description="Convert wavefront.obj files to internal mesh format")
 
 parser.add_argument("input", help="specify input file", type=argparse.FileType('r', encoding='UTF-8'))
-parser.add_argument("material", nargs='*', help="provide materials used", default=[])
+parser.add_argument("material", nargs='*', help="provide materials used")
 parser.add_argument("output", help="specify output file", type=argparse.FileType('w', encoding='UTF-8'))
 
 args = parser.parse_args()
