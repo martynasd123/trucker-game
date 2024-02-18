@@ -44,7 +44,18 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(include)
 file(GLOB_RECURSE SUBDIR_SOURCES "src/*.cpp")
-add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp)
+add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp
+        include/common/render/Light.h
+        src/engine/graphics/opengl/pass/LightingPass.cpp
+        include/engine/graphics/opengl/pass/LightingPass.h
+        src/engine/graphics/opengl/buffer/FrameBufferObject.cpp
+        include/engine/graphics/opengl/buffer/FrameBufferObject.h
+        src/engine/graphics/opengl/buffer/GBuffer.cpp
+        include/engine/graphics/opengl/buffer/GBuffer.h
+        src/engine/graphics/opengl/buffer/RenderBuffer.cpp
+        include/engine/graphics/opengl/buffer/RenderBuffer.h
+        src/engine/graphics/opengl/texture/TextureManager.cpp
+        include/engine/graphics/opengl/texture/TextureManager.h)
 
 # Copy the assets dir
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

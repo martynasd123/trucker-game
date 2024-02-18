@@ -4,6 +4,8 @@
 #include "Texture.h"
 
 class Texture2D: public Texture {
+private:
+    void setParameters();
 public:
     Texture2D(GLint level,
               GLint internalformat,

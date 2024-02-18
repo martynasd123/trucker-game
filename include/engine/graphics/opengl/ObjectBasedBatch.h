@@ -4,16 +4,18 @@
 #include "common/render/Mesh.h"
 #include "common/math/Transform.h"
 #include "Batch.h"
-#include "MaterialBasedBatch.h"
+#include "engine/graphics/opengl/material/MaterialBasedBatch.h"
+#include "engine/graphics/opengl/material/MaterialHandlerRegistry.h"
 
 class ObjectBasedBatch: public Batch {
 private:
     Transform mTransform;
     vector<MaterialBasedBatch*> mMaterialBatches;
+    MaterialHandlerRegistry& mHandlerRegistry;
 
-    void createMaterialBasedBatch(string materialType, Mesh* mesh);
+    void createMaterialBasedBatch(const string& materialType, Mesh* mesh);
 public:
-    ObjectBasedBatch(Mesh* mesh, Transform transform);
+    ObjectBasedBatch(Mesh* mesh, Transform transform, MaterialHandlerRegistry& registry);
 
     void setTransform(const Transform transform);
 

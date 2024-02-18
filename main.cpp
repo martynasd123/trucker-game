@@ -52,7 +52,7 @@ int main() {
     Entity e1 = ecs->createEntity();
     ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 0.0f, 0.0f});
 
-    auto handle = resourceManager->acquireHandle<MeshResource>("assets/meshes/cube.mesh");
+    auto handle = resourceManager->acquireHandle<MeshResource>("assets/meshes/pedestal.mesh");
     auto mesh = resourceManager->getResource<MeshResource>(handle);
     ecs->addComponent<RenderComponent>(e1, mesh);
 

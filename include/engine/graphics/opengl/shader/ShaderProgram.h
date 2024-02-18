@@ -5,17 +5,35 @@
 
 class ShaderProgram {
 private:
-    GLuint mId = glCreateProgram();
+    optional<GLuint> mId;
 public:
-    template <typename ShaderType, typename = std::enable_if_t<std::is_base_of<Shader, ShaderType>::value>>
+
+    explicit ShaderProgram();
+
+    ShaderProgram(ShaderProgram&& other);
+
+    ShaderProgram(ShaderProgram const &other) noexcept;
+
+        template <typename ShaderType, typename = std::enable_if_t<std::is_base_of<Shader, ShaderType>::value>>
     void addShader(ShaderType* shaderDerived) {
         auto shader = dynamic_cast<Shader*>(shaderDerived);
-        glAttachShader(mId, shader->getId());
+        glAttachShader(*mId, shader->getId());
     }
 
     void link();
 
-    void use();
+    void use() const;
+
+    /**
+     * Sets the uniform of a given type to this shader program.
+     * @tparam T Type of uniform to set
+     * @param name Name of uniform
+     * @param value Value of uniform
+     */
+    template<typename T>
+    void setUniform(string name, const T value) const;
+
+    void bindUBO(const string& name, GLuint bindingPoint) const;
 
     virtual ~ShaderProgram();
 };

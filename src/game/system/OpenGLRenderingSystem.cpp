@@ -25,16 +25,16 @@ void OpenGLRenderingSystem::init() {
 
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
+    glEnable(GL_DEPTH_TEST);
+
     mRenderer = new Renderer();
+    mRenderer->addLight(PointLight(1.0f, Vector3f(1.0f, 1.0f, 1.0f), Vector3f(1.0f, 1.0f, 1.0f)));
 }
 
 void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) {
     if (glfwWindowShouldClose(mWindow)) {
         exit(0);
     }
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
     mRenderer->draw();
     glfwSwapBuffers(mWindow);
     glfwPollEvents();

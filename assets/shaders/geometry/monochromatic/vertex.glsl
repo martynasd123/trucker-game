@@ -1,14 +1,21 @@
 #version 330 core
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec3 aNormal;
+
+layout(location = 0) in vec3 viPos;
+layout(location = 1) in vec3 viNormal;
+layout(location = 2) in vec2 viUVCoord;
+layout(location = 3) in uint viMaterialIndex;
+
+flat out uint voMaterialIndex;
+out vec3 voPos;
+out vec3 voNormal;
+
+uniform mat4 u_model_to_world;
+uniform mat4 u_world_to_clip;
 
 void main() {
-    vec3 factor = vec3(0.1f, 0.1f, 0.1f);
-    mat4 scaling = mat4(
-            factor.x, 0.0f, 0.0f, 0.0f,
-            0.0f, factor.y, 0.0f, 0.0f,
-            0.0f, 0.0f, factor.z, 0.0f,
-            0.0f, 0.0f, 0.0f, 1.0f
-    );
-    gl_Position = scaling * vec4(aPos.x, aPos.y, aPos.z, 1.0);
+    vec4 world = u_model_to_world * vec4(viPos.xyz, 1.0);
+    voPos = (world / world.w).xyz;
+    gl_Position = u_world_to_clip * world;
+    voMaterialIndex = viMaterialIndex;
+    voNormal = (u_model_to_world * vec4(viNormal, 1.0f)).xyz;
 }

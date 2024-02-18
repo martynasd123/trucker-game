@@ -1,13 +1,12 @@
 #include "engine/graphics/opengl/ObjectBasedBatch.h"
-#include "engine/graphics/opengl/BPMonochromaticMaterialBatch.h"
 
 #include <vector>
 
 using namespace std;
 
-void ObjectBasedBatch::createMaterialBasedBatch(string materialType, Mesh* mesh) {
+void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, Mesh* mesh) {
     if (materialType == "bp-monochromatic") {
-        auto materialBatch = new BPMonochromaticMaterialBatch(mesh);
+        auto materialBatch = new MaterialBasedBatch(mesh, mHandlerRegistry.getHandler(materialType));
         mMaterialBatches.push_back(dynamic_cast<MaterialBasedBatch*>(materialBatch));
     } else if (materialType == "bp-textured") {
         // TODO
@@ -16,7 +15,7 @@ void ObjectBasedBatch::createMaterialBasedBatch(string materialType, Mesh* mesh)
     }
 }
 
-ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform): mTransform(transform) {
+ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform, MaterialHandlerRegistry& registry): mTransform(transform), mHandlerRegistry(registry) {
     vector<Material*> materials(mesh->materials);
 
     // Sort materials by type

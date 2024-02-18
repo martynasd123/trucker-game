@@ -1,5 +1,7 @@
 #ifndef TRUCKER_GAME_MATRIX4F_H
 #define TRUCKER_GAME_MATRIX4F_H
+
+#include "common/math/Vector3f.h"
 #include <array>
 
 using namespace std;
@@ -25,11 +27,19 @@ public:
      */
     static Matrix4f scaling(float sx, float sy, float sz);
 
+    static Matrix4f scaling(Vector3f vec);
+
     /**
      * Generates a translation transformation matrix
      * @return Translation transformation matrix
      */
     static Matrix4f translation(float sx, float sy, float sz);
+
+    static Matrix4f translation(Vector3f vec);
+
+    static Matrix4f rotationX(float rx);
+
+    static Matrix4f rotationY(float rY);
 
     /**
      * Constructs a new matrix object

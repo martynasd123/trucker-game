@@ -1,7 +1,7 @@
 #ifndef TRUCKER_GAME_VERTEXARRAYOBJECT_H
 #define TRUCKER_GAME_VERTEXARRAYOBJECT_H
 
-#include "engine/graphics/opengl/buffer/VertexBufferObject.h"
+#include "engine/graphics/opengl/buffer/BufferObject.h"
 #include "common/math/Vector3f.h"
 #include "common/math/Vector2f.h"
 
@@ -14,7 +14,7 @@ public:
     template<typename T>
     void addVertexAttribute(unsigned int index, VertexBufferObject<T>* vbo);
 
-    void addElementBuffer(VertexBufferObject<int>* vbo);
+    void addElementBuffer(ElementBufferObject* ebo);
 
     void bind();
 

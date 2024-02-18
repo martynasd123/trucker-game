@@ -58,19 +58,19 @@
   "materials": [
     {
       "type": "bp-monochromatic",
-      "ambient": 0.1,
-      "diffuse": 0.7,
-      "specular": [1.0, 1.0, 1.0],
-      "shininess": 50.0,
-      "color": [1.0, 0.0, 0.0]
+      "ambient": 0.5,
+      "diffuse": 0.0,
+      "specular": [1.0, 1.0, 0.0],
+      "shininess": 0.0,
+      "color": [0.0, 1.0, 0.0]
     },
     {
       "type": "bp-monochromatic",
-      "ambient": 0.1,
-      "diffuse": 0.7,
-      "specular": [1.0, 1.0, 1.0],
-      "shininess": 50.0,
-      "color": [0.0, 1.0, 0.0]
+      "ambient": 0.0,
+      "diffuse": 0.0,
+      "specular": [0.0, 1.0, 0.0],
+      "shininess": 0.0,
+      "color": [1.0, 0.0, 0.0]
     }
   ],
   "material-mapping": [

@@ -1,6 +1,8 @@
 #ifndef TRUCKER_GAME_MATERIAL_H
 #define TRUCKER_GAME_MATERIAL_H
 
+#include "common/math/Vector3f.h"
+
 struct Material {
     virtual std::string getTypeString() = 0;
 

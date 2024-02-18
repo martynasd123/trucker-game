@@ -12,14 +12,11 @@ void VertexArrayObject::unbind() {
     glBindVertexArray(0);
 }
 
-void VertexArrayObject::addElementBuffer(VertexBufferObject<int>* vbo) {
-    if (vbo->getType() != GL_ELEMENT_ARRAY_BUFFER) {
-        throw invalid_argument("Unexpected buffer type passed to addElementBuffer");
-    }
+void VertexArrayObject::addElementBuffer(ElementBufferObject* ebo) {
     bind();
-    vbo->bind();
+    ebo->bind();
     unbind();
-    vbo->unbind();
+    ebo->unbind();
 }
 
 template<> void VertexArrayObject::addVertexAttribute<Vector3f>(unsigned int index, VertexBufferObject<Vector3f> *vbo) {
@@ -35,6 +32,15 @@ template<> void VertexArrayObject::addVertexAttribute<Vector2f>(unsigned int ind
     bind();
     vbo->bind();
     glVertexAttribPointer(index, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableVertexAttribArray(index);
+    unbind();
+    vbo->unbind();
+}
+
+template<> void VertexArrayObject::addVertexAttribute<unsigned int>(unsigned int index, VertexBufferObject<unsigned int> *vbo) {
+    bind();
+    vbo->bind();
+    glVertexAttribPointer(index, 1, GL_UNSIGNED_INT, GL_FALSE, 0, nullptr);
     glEnableVertexAttribArray(index);
     unbind();
     vbo->unbind();

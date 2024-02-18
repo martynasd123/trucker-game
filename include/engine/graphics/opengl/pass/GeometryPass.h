@@ -4,15 +4,17 @@
 #include "RenderPass.h"
 #include "engine/Globals.h"
 #include "engine/graphics/opengl/texture/Texture2D.h"
+#include "engine/graphics/opengl/buffer/GBuffer.h"
 #include "engine/graphics/opengl/ObjectBasedBatch.h"
 #include "engine/graphics/opengl/shader/ShaderProgram.h"
+#include "engine/graphics/opengl/buffer/BufferObject.h"
+#include "engine/graphics/opengl/buffer/std140.h"
 
 class GeometryPass: public RenderPass {
-private:
-    Texture2D mTexAlbedo = Texture2D(0, GL_RGB, WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGB, GL_UNSIGNED_BYTE);
-    ShaderProgram* mShaderProgram{};
+protected:
+    GBuffer* mGBuffer;
 public:
-    GeometryPass();
+    GeometryPass(Texture2D& albedoTexture, Texture2D& normalTexture, Texture2D& positionTexture);
     void draw(ObjectBasedBatch* batch);
 };
 

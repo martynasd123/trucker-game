@@ -1,4 +1,5 @@
 #include "common/math/Matrix4f.h"
+#include <cmath>
 
 const Matrix4f Matrix4f::IDENTITY = Matrix4f({
         1.0f, 0.0f, 0.0f, 0.0f,
@@ -33,11 +34,38 @@ Matrix4f Matrix4f::scaling(float sx, float sy, float sz) {
    });
 }
 
+
+Matrix4f Matrix4f::scaling(Vector3f vec) {
+    return scaling(vec.getX(), vec.getY(), vec.getZ());
+}
+
 Matrix4f Matrix4f::translation(float tx, float ty, float tz) {
    return Matrix4f({
        1.0f, 0.0f, 0.0f, tx,
        0.0f, 1.0f, 0.0f, ty,
        0.0f, 0.0f, 1.0f, tz,
+       0.0f, 0.0f, 0.0f, 1.0f
+   });
+}
+
+Matrix4f Matrix4f::translation(Vector3f position) {
+   return translation(position.getX(), position.getY(), position.getZ());
+}
+
+Matrix4f Matrix4f::rotationX(float rx) {
+   return Matrix4f({
+       1.0f, 0.0f, 0.0f, 0.0f,
+       0.0f, cos(rx), -sin(rx), 0.0f,
+       0.0f, sin(rx), cos(rx), 0.0f,
+       0.0f, 0.0f, 0.0f, 1.0f
+   });
+}
+
+Matrix4f Matrix4f::rotationY(float ry) {
+   return Matrix4f({
+       cos(ry), 0.0f, sin(ry), 0.0f,
+       0.0f, 1.0f, 0.0f, 0.0f,
+       -sin(ry), 0.0f, cos(ry), 0.0f,
        0.0f, 0.0f, 0.0f, 1.0f
    });
 }
