@@ -39,11 +39,7 @@ for line in input_file:
             material_names = entry[1::]
             for material_name in material_names:
                 material_name = material_name.strip()
-                try:
-                    file = open(material_files[material_name], "r")
-                    used_material_files.append(file)
-                except:
-                    parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
+                used_material_files.append(material_files[material_name])
         case "v":
             try:
                 coordinates = get_coordinates(entry[1:4])
@@ -76,7 +72,12 @@ for line in input_file:
                 group_id += 1
                 material_found = False
 
-                for m_file in used_material_files:
+                for file in used_material_files:
+                    try:
+                        m_file = open(file, "r")
+                    except:
+                        parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
+       
                     for m_line in m_file:
                         words = m_line.split(' ')
                         match words[0]:
@@ -117,7 +118,7 @@ for line in input_file:
                                     curr_material["illumination"] = float(words[1].strip())
                             case _:
                                 continue
-                    m_file.seek(0)
+                    m_file.close()
                 if not material_found:
                     parser.exit(status=0, message="Could not find material %s in specified material files\n" % (entry[1].strip())) 
                 materials.append(curr_material)
