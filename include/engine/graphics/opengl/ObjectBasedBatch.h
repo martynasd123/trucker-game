@@ -22,6 +22,8 @@ public:
     const Transform &getTransform() const;
 
     const vector<MaterialBasedBatch *> &getMaterialBatches() const;
+
+
 };
 
 

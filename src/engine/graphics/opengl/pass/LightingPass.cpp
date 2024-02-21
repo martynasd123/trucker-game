@@ -37,6 +37,8 @@ void LightingPass::draw() {
 
     GL_UTIL::checkError();
 
+    mLightsUbo.bindToPoint(POINT_LIGHT_DATA_BINDING_POINT);
+
     unsigned int indices[6] = {0, 1, 2, 0, 2, 3};
     mTextureManager.begin();
     mTextureManager.addTexture(mPositionTexture);
@@ -46,6 +48,7 @@ void LightingPass::draw() {
     mVao.bind();
     for (const auto &handler: mHandlerRegistry.getHandlers()) {
         const ShaderProgram &program = *handler->getShaderProgramForPass(LIGHTING_PASS);
+        program.bindUBO("ub_lights", POINT_LIGHT_DATA_BINDING_POINT);
         program.use();
         GL_UTIL::checkError();
         mTextureManager.bindTexture(mPositionTexture, program, "u_gPosition");

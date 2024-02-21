@@ -2,29 +2,26 @@
 #include "engine/graphics/opengl/material/BPMonochromaticMaterialHandler.h"
 
 MeshId Renderer::addMesh(Mesh *mesh, Transform transform) {
-    auto batch = new ObjectBasedBatch(mesh, transform, mHandlerRegistry);
+    auto* batch = new ObjectBasedBatch(mesh, transform, mHandlerRegistry);
     MeshId id = mAvailableMeshIds.front();
     mAvailableMeshIds.pop();
-    mBatches[id] = batch;
-    return id;
+    return mBatches.push_back(id, batch);
 }
 
 void Renderer::removeMesh(MeshId id) {
-    delete mBatches[id];
-    mBatches[id] = nullptr;
-    mAvailableMeshIds.push(id);
+    mBatches.eraseById(id);
 }
 
 void Renderer::updateTransform(MeshId id, Transform transform) {
     mBatches[id]->setTransform(transform);
 }
 
-Renderer::Renderer() : mHandlerRegistry(*new MaterialHandlerRegistry), mLightsUbo(500),
+Renderer::Renderer() : mHandlerRegistry(*new MaterialHandlerRegistry), mLightsUbo(LightsUniformBufferObject<20, PointLight>()),
                        mAlbedoTexture(Texture2D(0, GL_RGB16F, WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_FLOAT)),
                        mNormalTexture(Texture2D(0, GL_RGB16F, WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_FLOAT)),
                        mPositionTexture(Texture2D(0, GL_RGB16F, WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_FLOAT)),
                        mGeometryPass(GeometryPass(mAlbedoTexture, mNormalTexture, mPositionTexture)),
-                       mLightingPass(LightingPass(mLightsUbo, mPositionTexture, mNormalTexture, mAlbedoTexture, mHandlerRegistry, mTextureManager)),
+                       mLightingPass(LightingPass(*dynamic_cast<UniformBufferObject*>(&mLightsUbo), mPositionTexture, mNormalTexture, mAlbedoTexture, mHandlerRegistry, mTextureManager)),
                        mTextureManager(TextureManager()){
 
     GL_UTIL::checkError();
@@ -38,6 +35,6 @@ Renderer::Renderer() : mHandlerRegistry(*new MaterialHandlerRegistry), mLightsUb
 }
 
 void Renderer::draw() {
-    mGeometryPass.draw(mBatches[0]);
+    mGeometryPass.draw(*mBatches[0]);
     mLightingPass.draw();
 }

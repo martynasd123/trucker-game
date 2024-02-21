@@ -5,6 +5,7 @@
 #include "common/render/Light.h"
 #include "common/math/Transform.h"
 #include "engine/graphics/opengl/ObjectBasedBatch.h"
+#include "engine/graphics/opengl/util/MappedVector.h"
 #include "engine/graphics/opengl/pass/GeometryPass.h"
 #include "engine/graphics/opengl/pass/LightingPass.h"
 #include "engine/graphics/opengl/Definitions.h"
@@ -18,13 +19,13 @@ using namespace std;
 
 class Renderer {
 private:
-    ObjectBasedBatch* mBatches[MAX_OBJECTS]{};
-    Light* mLights[MAX_LIGHTS]{};
+    MappedVector<ObjectBasedBatch*> mBatches;
+    MappedVector<Light*> mLights;
     queue<MeshId> mAvailableMeshIds;
     queue<LightId> mAvailableLightIds;
 
     MaterialHandlerRegistry& mHandlerRegistry;
-    UniformBufferObject mLightsUbo;
+    LightsUniformBufferObject<20, PointLight> mLightsUbo;
     TextureManager mTextureManager;
 
     // Textures
@@ -50,10 +51,9 @@ public:
 template<class T>
 LightId Renderer::addLight(T light) {
     static_assert(std::is_base_of<Light, T>::value, "Light must be derived from the Light base class");
-    LightId lightId = mAvailableLightIds.front();
-    mAvailableLightIds.pop();
-    mLights[lightId] = new T(std::move(light));
-    return lightId;
+    LightId id = mLights.push_back(new T(light));
+    mLightsUbo.addLight(id, light);
+    return id;
 }
 
 #endif //TRUCKER_GAME_RENDERER_H

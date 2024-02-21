@@ -17,9 +17,9 @@ double degreesToRadians(double degrees) {
     return degrees * M_PI / 180.0;
 }
 
-void GeometryPass::draw(ObjectBasedBatch *batch) {
+void GeometryPass::draw(ObjectBasedBatch& batch) {
 
-    auto transform = batch->getTransform();
+    auto transform = batch.getTransform();
 
     Matrix4f model = Matrix4f::scaling(transform.scale)
                      * Matrix4f::rotationY(degreesToRadians(y += 1.0f))
@@ -42,7 +42,7 @@ void GeometryPass::draw(ObjectBasedBatch *batch) {
 
     Matrix4f combined = model * view * projection;
 
-    for (const auto &materialBatch: batch->getMaterialBatches()) {
+    for (const auto &materialBatch: batch.getMaterialBatches()) {
         const ShaderProgram &shaderProgram = *materialBatch->getMaterialHandler().getShaderProgramForPass(GEOMETRY_PASS);
 
         shaderProgram.use();

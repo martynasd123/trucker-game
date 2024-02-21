@@ -6,6 +6,16 @@ uniform sampler2D u_gPosition;
 uniform sampler2D u_gNormal;
 uniform sampler2D u_gAlbedo;
 
+struct PointLight {
+    vec3 color;
+    float intensity;
+    vec3 position;
+};
+
+layout(std140) uniform ub_lights {
+    PointLight lights[20];
+};
+
 out vec4 FragColor;
 
 vec3 lightDirection = normalize(vec3(-1.0f, -1.0f, -1.0f));

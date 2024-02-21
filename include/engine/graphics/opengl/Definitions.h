@@ -20,5 +20,6 @@ const PassId LIGHTING_PASS = 1 << 2;
 const PassId POST_PROCESS_PASS = 1 << 3;
 
 const unsigned int MATERIAL_DATA_BINDING_POINT = 0;
+const unsigned int POINT_LIGHT_DATA_BINDING_POINT = 1;
 
 #endif //TRUCKER_GAME_DEFINITIONS_H

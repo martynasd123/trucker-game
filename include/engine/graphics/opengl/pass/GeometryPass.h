@@ -15,7 +15,7 @@ protected:
     GBuffer* mGBuffer;
 public:
     GeometryPass(Texture2D& albedoTexture, Texture2D& normalTexture, Texture2D& positionTexture);
-    void draw(ObjectBasedBatch* batch);
+    void draw(ObjectBasedBatch& batch);
 };
 
 

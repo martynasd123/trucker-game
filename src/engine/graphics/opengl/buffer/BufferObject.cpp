@@ -68,6 +68,7 @@ void BufferObjectBase::unbind() {
 }
 
 BufferObjectBase::BufferObjectBase(int size, GLenum type): mType(type) {
+    this->mSize = size;
     glGenBuffers(1, &mId);
 }
 
@@ -75,4 +76,55 @@ UniformBufferObject::UniformBufferObject(int size): BufferObjectBase(size, GL_UN
     bind();
     glBufferData(mType, size, nullptr, GL_DYNAMIC_DRAW);
     unbind();
+}
+
+struct std140PointLight {
+    float colorX;
+    float colorY;
+    float colorZ;
+    float intensity;
+    float positionX;
+    float positionY;
+    float positionZ;
+    float pad0;
+
+    explicit std140PointLight(const PointLight &light) :
+            colorX(light.color.getX()),
+            colorY(light.color.getY()),
+            colorZ(light.color.getZ()),
+            intensity(light.intensity),
+            positionX(light.color.getZ()),
+            positionY(light.color.getY()),
+            positionZ(light.color.getZ()) {}
+};
+
+struct std140Light {
+    float colorX;
+    float colorY;
+    float colorZ;
+    float intensity;
+
+    explicit std140Light(const Light &light) :
+            colorX(light.color.getX()),
+            colorY(light.color.getY()),
+            colorZ(light.color.getZ()),
+            intensity(light.intensity){}
+};
+
+
+template<>
+void setLightAtIndex(unsigned int index, const PointLight &light, BufferObjectBase& buff) {
+    std140PointLight std140(light);
+    buff.setData((char*)&std140, sizeof(std140PointLight), sizeof(std140PointLight) * index);
+}
+
+template<>
+void setLightAtIndex(unsigned int index, const Light &light, BufferObjectBase& buff) {
+    std140Light std140(light);
+    buff.setData((char*)&std140, sizeof(std140Light), sizeof(std140Light) * index);
+}
+
+template<>
+unsigned int getLightStructureSize<PointLight>() {
+    return sizeof(std140PointLight);
 }
