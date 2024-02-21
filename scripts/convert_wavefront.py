@@ -32,123 +32,101 @@ face_no = 0
 materials = []
 material_mapping = []
 
-lines = input_file.readlines()
-for line in lines:
-    match line[0]:
-        case "m":
-            entry = line.split(' ')
-            if entry[0] == "mtllib":
-                material_names = entry[1::]
-                for material_name in material_names:
-                    material_name = material_name.strip()
-                    try:
-                        file = open(material_files[material_name], "r")
-                        used_material_files.append(file)
-                    except:
-                        parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
-            else:
-                continue
+for line in input_file:
+    entry = line.split(' ')
+    match entry[0]:
+        case "mtllib":
+            material_names = entry[1::]
+            for material_name in material_names:
+                material_name = material_name.strip()
+                try:
+                    file = open(material_files[material_name], "r")
+                    used_material_files.append(file)
+                except:
+                    parser.exit(status=0, message="Material %s not specified in command call. Use -m to specify material files used on object\n" % (material_name))
         case "v":
-            entry = line.split(' ')
-            vertex = entry[0]
+            try:
+                coordinates = get_coordinates(entry[1:4])
+                geometric_vertices.append(coordinates)
+            except ValueError as err:
+                parser.exit(status=0, message="Invalid coordinates of geometric vertex: %s\n" % (err.args))
+            except:
+                parser.exit(status=0, message="Could not parse coordinates of geometric vertex\n")
+        case "vn":
+            try:
+                coordinates = get_coordinates(entry[1:4])
+                vertex_normals.append(coordinates)
+            except ValueError as err:
+                parser.exit(status=0, message="Invalid vector of vertex normal: %s\n" % (err.args))
+            except:
+                parser.exit(status=0, message="Could not parse vector of vertex normal\n")
+        case "vt":
+            try:
+                coordinates = get_coordinates(entry[1:3])
+                texture_vertices.append(coordinates)
+            except ValueError as err:
+                parser.exit(status=0, message="Invalid coordinates of texture vertex: %s\n" % (err.args))
+            except:
+                parser.exit(status=0, message="Could not parse coordinates of texture vertex\n")
+        case "usemtl":
+            if entry[1] not in used_materials:
+                used_materials.append(entry[1])
+                groups["group-%i" % (group_id)] = []
+                material_mapping.append(["group-%i" % (group_id)])
+                group_id += 1
+                material_found = False
 
-            match vertex:
-                case "v":
-                    try:
-                        coordinates = get_coordinates(entry[1:4])
-                        geometric_vertices.append(coordinates)
-                    except ValueError as err:
-                        parser.exit(status=0, message="Invalid coordinates of geometric vertex: %s\n" % (err.args))
-                    except:
-                        parser.exit(status=0, message="Could not parse coordinates of geometric vertex\n")
-                case "vn":
-                    try:
-                        coordinates = get_coordinates(entry[1:4])
-                        vertex_normals.append(coordinates)
-                    except ValueError as err:
-                        parser.exit(status=0, message="Invalid vector of vertex normal: %s\n" % (err.args))
-                    except:
-                        parser.exit(status=0, message="Could not parse vector of vertex normal\n")
-                case "vt":
-                    try:
-                        coordinates = get_coordinates(entry[1:3])
-                        texture_vertices.append(coordinates)
-                    except ValueError as err:
-                        parser.exit(status=0, message="Invalid coordinates of texture vertex: %s\n" % (err.args))
-                    except:
-                        parser.exit(status=0, message="Could not parse coordinates of texture vertex\n")
-                case _:
-                    continue
-        case "u":
-            entry = line.split(' ')
-            if entry[0] == "usemtl":
-                if entry[1] not in used_materials:
-                    used_materials.append(entry[1])
-                    groups["group-%i" % (group_id)] = []
-                    material_mapping.append(["group-%i" % (group_id)])
-                    group_id += 1
-                    material_found = False
-
-                    for m_file in used_material_files:
-                        m_lines = m_file.readlines()
-                        for m_line in m_lines:
-                            match m_line[0]:
-                                case "n":
-                                    if material_found:
-                                        break
+                for m_file in used_material_files:
+                    for m_line in m_file:
+                        words = m_line.split(' ')
+                        match words[0]:
+                            case "newmtl":
+                                if material_found:
+                                    break
+                                if words[1].strip() == entry[1].strip():
+                                    curr_material = {"type": "bp-monochromatic"}
+                                    material_found = True
+                            case "d":
+                                if material_found:
                                     words = m_line.split(' ')
-                                    if words[0].strip() == "newmtl" and words[1].strip() == entry[1].strip():
-                                        curr_material = {}
-                                        curr_material["type"] = "bp-monochromatic"
-                                        material_found = True
-                                case "d":
-                                    if material_found:
-                                        words = m_line.split(' ')
-                                        curr_material["dissolve"] = float(words[1].strip())
-                                case "K":
-                                    if material_found:
-                                        words = m_line.split(' ')
-                                        match words[0]:
-                                            case "Ka":
-                                                rgb_values = get_coordinates(words[1::])
-                                                curr_material["ambient"] = rgb_values
-                                            case "Kd":
-                                                rgb_values = get_coordinates(words[1::])
-                                                curr_material["diffuse"] = rgb_values
-                                            case "Ks":
-                                                rgb_values = get_coordinates(words[1::])
-                                                curr_material["specular"] = rgb_values
-                                            case "Ke":
-                                                rgb_values = get_coordinates(words[1::])
-                                                curr_material["emissive"] = rgb_values
-                                case "N":
-                                    if material_found:
-                                        words = m_line.split(' ')
-                                        match words[0]:
-                                            case "Ns":
-                                                curr_material["shininess"] = float(words[1].strip())
-                                            case "Ni":
-                                                curr_material["refraction"] = float(words[1].strip())
-                                case "i":
-                                    if material_found:
-                                        words = m_line.split(' ')
-                                        if words[0] == "illum":
-                                            curr_material["illumination"] = float(words[1].strip())
-                                case _:
-                                    continue
-                        m_file.seek(0)
-                    if not material_found:
-                        parser.exit(status=0, message="Could not find material %s in specified material files\n" % (entry[1].strip())) 
-                    materials.append(curr_material)
-                else:
-                    index = used_materials.index(entry[1])
-                    groups["group-%i" % (group_id)] = []
-                    material_mapping[index].append("group-%i" % (group_id))
-                    group_id += 1
+                                    curr_material["dissolve"] = float(words[1].strip())
+                            case "Ka":
+                                if material_found:
+                                    rgb_values = get_coordinates(words[1::])
+                                    curr_material["ambient"] = rgb_values
+                            case "Kd":
+                                if material_found:
+                                    rgb_values = get_coordinates(words[1::])
+                                    curr_material["diffuse"] = rgb_values
+                            case "Ks":
+                                if material_found:
+                                    rgb_values = get_coordinates(words[1::])
+                                    curr_material["specular"] = rgb_values
+                            case "Ke":
+                                if material_found:
+                                    rgb_values = get_coordinates(words[1::])
+                                    curr_material["emissive"] = rgb_values
+                            case "Ns":
+                                if material_found:
+                                    curr_material["shininess"] = float(words[1].strip())
+                            case "Ni":
+                                if material_found:
+                                    curr_material["refraction"] = float(words[1].strip())
+                            case "iillum":
+                                if material_found:
+                                    curr_material["illumination"] = float(words[1].strip())
+                            case _:
+                                continue
+                    m_file.seek(0)
+                if not material_found:
+                    parser.exit(status=0, message="Could not find material %s in specified material files\n" % (entry[1].strip())) 
+                materials.append(curr_material)
             else:
-                continue
+                index = used_materials.index(entry[1])
+                groups["group-%i" % (group_id)] = []
+                material_mapping[index].append("group-%i" % (group_id))
+                group_id += 1
         case "f":
-            entry = line.split(' ')
             face = []
             references = entry[1::]
             for reference in references:
