@@ -1,6 +1,5 @@
 #include "engine/graphics/opengl/shader/ShaderProgram.h"
 #include "common/math/Matrix4f.h"
-#include <iostream>
 
 ShaderProgram::~ShaderProgram() {
     if (mId.has_value()) {
@@ -54,4 +53,10 @@ template<>
 void ShaderProgram::setUniform(std::string name, const int value) const {
     GLint uniformLocation = glGetUniformLocation(*mId, name.c_str());
     glProgramUniform1i(*mId, uniformLocation, value);
+}
+
+template<>
+void ShaderProgram::setUniform(std::string name, const unsigned int value) const {
+    GLint uniformLocation = glGetUniformLocation(*mId, name.c_str());
+    glProgramUniform1ui(*mId, uniformLocation, value);
 }

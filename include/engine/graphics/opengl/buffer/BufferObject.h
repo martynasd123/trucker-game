@@ -91,34 +91,41 @@ void setLightAtIndex(unsigned int index, const LightType &light, BufferObjectBas
 template<typename LightType>
 unsigned int getLightStructureSize();
 
-template<unsigned int Size, class LightType>
+template<class LightType>
 class LightsUniformBufferObject : public UniformBufferObject {
 private:
-    optional<unsigned int> items[Size];
+    vector<unsigned int> items;
+    vector<LightType> lights;
+    unsigned int maxNumLights;
 public:
-    LightsUniformBufferObject() : UniformBufferObject(getLightStructureSize<LightType>() * Size) {
-        for (int i = 0; i < Size; ++i) {
-            items[i] = optional<unsigned int>();
-            setLightAtIndex(i, NULL_LIGHT, *dynamic_cast<BufferObjectBase*>(this));
-        }
+    LightsUniformBufferObject(unsigned int maxNumLights):UniformBufferObject(getLightStructureSize<LightType>() * maxNumLights),
+        maxNumLights(maxNumLights){
     }
 
     void addLight(unsigned int id, LightType &light) {
-        for (int i = 0; i < Size; ++i) {
-            if (!items[i].has_value()) {
-                setLightAtIndex(i, light, *dynamic_cast<BufferObjectBase*>(this));
-                items[i] = id;
+        setLightAtIndex(items.size(), light, *dynamic_cast<BufferObjectBase*>(this));
+        items.push_back(id);
+        lights.push_back(LightType(light));
+    }
+
+    void removeLight(unsigned int id) {
+        for (int i = 0; i < maxNumLights; ++i) {
+            if (items[i] == id) {
+                int structureSize = getLightStructureSize<LightType>();
+                if (i - 1 == maxNumLights || items.size() == 1) {
+                    return;
+                }
+                setLightAtIndex(i, lights.back(), *dynamic_cast<BufferObjectBase*>(this));
+                items[i] = items.back();
+                lights[i] = lights.back();
+                items.pop_back();
+                lights.pop_back();
             }
         }
     }
 
-    void removeLight(unsigned int id) {
-        for (int i = 0; i < Size; ++i) {
-            if (items[i].has_value() && items[i].value() == id) {
-                items[i] = optional<unsigned int>();
-                setLightAtIndex(i, NULL_LIGHT, *dynamic_cast<BufferObjectBase*>(this));
-            }
-        }
+    unsigned int getNumLights() {
+        return items.size();
     }
 
 };

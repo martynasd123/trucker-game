@@ -8,20 +8,22 @@
 
 class LightingPass: public RenderPass {
 protected:
-    UniformBufferObject& mLightsUbo;
+    LightsUniformBufferObject<PointLight>& mPointLights;
     Texture2D& mPositionTexture;
     Texture2D& mNormalTexture;
     Texture2D& mColorTexture;
+    Texture2D& mMaterialDataTexture;
     VertexBufferObject<Vector3f> mPositions;
     ElementBufferObject mEbo;
     VertexArrayObject mVao;
     MaterialHandlerRegistry& mHandlerRegistry;
     TextureManager& mTextureManager;
 public:
-    explicit LightingPass(UniformBufferObject& lightsUbo,
+    explicit LightingPass(LightsUniformBufferObject<PointLight>& lightsUbo,
                           Texture2D& positionTexture,
                           Texture2D& normalTexture,
                           Texture2D& colorTexture,
+                          Texture2D& MaterialDataTexture,
                           MaterialHandlerRegistry& handlerRegistry,
                           TextureManager& textureManager);
     void draw();

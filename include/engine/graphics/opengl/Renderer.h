@@ -3,6 +3,7 @@
 
 #include "common/render/Mesh.h"
 #include "common/render/Light.h"
+#include "common/math/Vector4f.h"
 #include "common/math/Transform.h"
 #include "engine/graphics/opengl/ObjectBasedBatch.h"
 #include "engine/graphics/opengl/util/MappedVector.h"
@@ -19,41 +20,41 @@ using namespace std;
 
 class Renderer {
 private:
-    MappedVector<ObjectBasedBatch*> mBatches;
-    MappedVector<Light*> mLights;
+    MappedVector<ObjectBasedBatch *> mBatches;
+    MappedVector<Light *> mLights;
     queue<MeshId> mAvailableMeshIds;
     queue<LightId> mAvailableLightIds;
 
-    MaterialHandlerRegistry& mHandlerRegistry;
-    LightsUniformBufferObject<20, PointLight> mLightsUbo;
+    Camera mCam;
+
+    MaterialHandlerRegistry &mHandlerRegistry;
+    LightsUniformBufferObject<PointLight> mPointLightsUbo;
     TextureManager mTextureManager;
 
     // Textures
     Texture2D mAlbedoTexture;
     Texture2D mPositionTexture;
     Texture2D mNormalTexture;
+    Texture2D mMaterialDataTexture;
 
     // Passes
     GeometryPass mGeometryPass;
     LightingPass mLightingPass;
 public:
     explicit Renderer();
-    MeshId addMesh(Mesh* mesh, Transform transform);
+
+    MeshId addMesh(Mesh *mesh, Transform transform);
 
     template<class T>
     LightId addLight(T light);
 
+    LightId removeLight(LightId id);
+
     void removeMesh(MeshId id);
+
     void updateTransform(MeshId id, Transform transform);
+
     void draw();
 };
-
-template<class T>
-LightId Renderer::addLight(T light) {
-    static_assert(std::is_base_of<Light, T>::value, "Light must be derived from the Light base class");
-    LightId id = mLights.push_back(new T(light));
-    mLightsUbo.addLight(id, light);
-    return id;
-}
 
 #endif //TRUCKER_GAME_RENDERER_H

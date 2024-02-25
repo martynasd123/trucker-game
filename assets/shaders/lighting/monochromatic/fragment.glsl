@@ -1,32 +1,62 @@
 #version 330 core
 
-in vec3 voPos;
+// Constants
+const int MAX_NUM_LIGHTS = 20;
+const vec3 lightDirection = normalize(vec3(-1.0f, -1.0f, -1.0f));
+
+in vec2 uvCoord;
 
 uniform sampler2D u_gPosition;
 uniform sampler2D u_gNormal;
 uniform sampler2D u_gAlbedo;
+uniform sampler2D u_gMaterial;
+
+uniform uint u_numLights;
 
 struct PointLight {
-    vec3 color;
-    float intensity;
+    vec3 ambient;
+    float quadratic;
+    vec3 diffuse;
+    float linear;
+    vec3 specular;
+    float constant;
     vec3 position;
 };
 
+struct Material {
+    float ambient;
+    float diffuse;
+    float shininess;
+};
+
 layout(std140) uniform ub_lights {
-    PointLight lights[20];
+    PointLight lights[MAX_NUM_LIGHTS];
 };
 
 out vec4 FragColor;
 
-vec3 lightDirection = normalize(vec3(-1.0f, -1.0f, -1.0f));
+vec3 calculatePointLight(PointLight light, vec3 normal, vec3 albedo, vec3 position, Material mat) {
+    vec3 direction = normalize(light.position - position);
+    vec3 reflectDir = reflect(-direction, normalize(normal));
+
+    vec3 diffuse = (max(dot(normal, direction), 0.0) * mat.diffuse) * light.diffuse;
+    vec3 specular = pow(max(dot(direction, reflectDir), 0.0), mat.shininess) * light.specular;
+    vec3 ambient = mat.ambient * light.ambient;
+
+    return albedo * (diffuse + ambient + specular);
+}
 
 void main() {
-    vec2 texCoords = (voPos.xy + 1.0f) / 2.0f;
+    vec3 albedo = texture(u_gAlbedo, uvCoord).xyz;
+    vec3 normal = texture(u_gNormal, uvCoord).xyz;
+    vec3 position = texture(u_gPosition, uvCoord).xyz;
+    vec3 mat = texture(u_gMaterial, uvCoord).xyz;
 
-    vec4 texColor = texture(u_gAlbedo, texCoords);
-    vec4 normal = texture(u_gNormal, texCoords);
+    vec3 result = vec3(0.0f);
+    for (uint i = uint(0); i < u_numLights; i++) {
+        PointLight pLight = lights[i];
+        result+=calculatePointLight(pLight, normal, albedo, position, Material(mat.x, mat.y, mat.z));
+    }
 
-    float diff = min(1.0f, max(dot(normal.xyz, lightDirection), 0.0) + 0.3f);
-
-    FragColor = vec4(texColor.xyz * diff, 1.0);
+    FragColor = vec4(result, 1.0f);
 }

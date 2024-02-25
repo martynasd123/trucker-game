@@ -11,9 +11,10 @@ private:
     Texture2D& mColorAttachment;
     Texture2D& mNormalAttachment;
     Texture2D& mPositionAttachment;
+    Texture2D& mMaterialIndexAttachment;
     RenderBuffer mDepthAttachment;
 public:
-    GBuffer(Texture2D& albedoTexture, Texture2D& normalTexture, Texture2D& positionTexture);
+    GBuffer(Texture2D& albedoTexture, Texture2D& normalTexture, Texture2D& positionTexture, Texture2D& MaterialDataTexture);
 };
 
 

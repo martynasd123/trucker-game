@@ -9,6 +9,7 @@
 #include "engine/resource/resolver/MeshResourceResolver.h"
 
 #include <thread>
+#include <iostream>
 
 ECS* ecs = new ECS;
 ResourceManager* resourceManager = new ResourceManager;
@@ -38,6 +39,10 @@ void loop() {
     }
 }
 
+float ttoRadians(float deg) {
+    return deg * (((float)M_PI) / 180.0f);
+}
+
 int main() {
     resourceManager->registerResourceResolver<TextResourceResolver, TextResource>();
     resourceManager->registerResourceResolver<MeshResourceResolver, MeshResource>();
@@ -62,4 +67,9 @@ int main() {
 
     delete ecs;
     return 0;
+
+//    Vector4f vec = Vector4f(0.0f, 0.0f, 15.0f, 1.0f) * Matrix4f::perspective(ttoRadians(60.0f), ((float)WINDOW_WIDTH) / ((float)WINDOW_HEIGHT), 100.0f, 0.1f);
+//    Vector3f normalized = Vector3f(vec.getX() / vec.getW(), vec.getY() / vec.getW(), vec.getZ() / vec.getW());
+//    cout << vec.getX() << " " << vec.getY() << " " << vec.getZ() << " " << vec.getW() << endl;
+//    cout << normalized.getX() << " " << normalized.getY() << " " << normalized.getZ() << endl;
 }

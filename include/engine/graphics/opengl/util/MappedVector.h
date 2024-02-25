@@ -15,9 +15,9 @@ private:
 public:
 
     unsigned int push_back(T element) {
-        mIdToIndexMap[last_id++] = mVector.size();
+        mIdToIndexMap[last_id] = mVector.size();
         mVector.push_back(element);
-        return last_id;
+        return last_id++;
     }
 
     void eraseAtIndex(unsigned int index) {
@@ -39,15 +39,15 @@ public:
     }
 
     unsigned int emplace_back(unsigned int index, T&& value) {
-        mIdToIndexMap[last_id++] = mVector.size();
+        mIdToIndexMap[last_id] = mVector.size();
         mVector.emplace_back(std::forward<T>(value));
-        return last_id;
+        return last_id++;
     }
 
     unsigned int push_back(unsigned int index, T value) {
-        mIdToIndexMap[last_id++] = mVector.size();
+        mIdToIndexMap[last_id] = mVector.size();
         mVector.push_back(value);
-        return last_id;
+        return last_id++;
     }
 
     std::vector<T>::iterator begin() {
