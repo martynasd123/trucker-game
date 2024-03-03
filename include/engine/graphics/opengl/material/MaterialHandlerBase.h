@@ -8,7 +8,6 @@
 #include "engine/graphics/opengl/shader/VertexShader.h"
 #include "engine/graphics/opengl/shader/FragmentShader.h"
 
-template<typename MATERIAL_TYPE>
 class MaterialHandlerBase: public MaterialHandler {
 private:
     ResourceManager& mResManager;
@@ -37,15 +36,6 @@ protected:
     explicit MaterialHandlerBase(ResourceManager& resManager): mResManager(resManager) {}
 
 public:
-    virtual void writeToUniformBuffer(vector<MATERIAL_TYPE> materials, int offset, BufferObjectBase& buff) const = 0;
-
-    void writeToUniformBuffer(vector<Material*> materials, int offset, BufferObjectBase& buff) const override {
-        vector<MATERIAL_TYPE> casted;
-        for (const auto &mat: materials) {
-            casted.push_back(*dynamic_cast<MATERIAL_TYPE*>(mat));
-        }
-        writeToUniformBuffer(casted, offset, buff);
-    }
 
     PassId getOverriddenPasses() const override {
         return mOverriddenPasses;

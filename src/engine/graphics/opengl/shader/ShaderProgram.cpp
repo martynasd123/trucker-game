@@ -44,19 +44,19 @@ ShaderProgram::ShaderProgram(ShaderProgram const &other) noexcept {
 }
 
 template<>
-void ShaderProgram::setUniform(std::string name, const Matrix4f value) const {
+void ShaderProgram::setUniform(const std::string& name, const Matrix4f& value) const {
     GLint uniformLocation = glGetUniformLocation(*mId, name.c_str());
     glProgramUniformMatrix4fv(*mId, uniformLocation, 1, GL_TRUE, value.array());
 }
 
 template<>
-void ShaderProgram::setUniform(std::string name, const int value) const {
+void ShaderProgram::setUniform(const std::string& name, const int& value) const {
     GLint uniformLocation = glGetUniformLocation(*mId, name.c_str());
     glProgramUniform1i(*mId, uniformLocation, value);
 }
 
 template<>
-void ShaderProgram::setUniform(std::string name, const unsigned int value) const {
+void ShaderProgram::setUniform(const std::string& name, const unsigned int& value) const {
     GLint uniformLocation = glGetUniformLocation(*mId, name.c_str());
     glProgramUniform1ui(*mId, uniformLocation, value);
 }

@@ -30,6 +30,10 @@ public:
         }
     }
 
+    unsigned int getIndex(unsigned int id) {
+        return mIdToIndexMap[id];
+    }
+
     void eraseById(unsigned int id) {
         if (!mIdToIndexMap.contains(id)) {
             throw invalid_argument("Invalid ID");
@@ -38,7 +42,7 @@ public:
         mIdToIndexMap.erase(id);
     }
 
-    unsigned int emplace_back(unsigned int index, T&& value) {
+    unsigned int emplace_back(T&& value) {
         mIdToIndexMap[last_id] = mVector.size();
         mVector.emplace_back(std::forward<T>(value));
         return last_id++;

@@ -1,20 +1,17 @@
 #ifndef TRUCKER_GAME_GBUFFER_H
 #define TRUCKER_GAME_GBUFFER_H
 
-
 #include "FrameBufferObject.h"
 #include "engine/graphics/opengl/texture/Texture2D.h"
+#include "engine/graphics/opengl/texture/DeferredShadingTextureRegistry.h"
 #include "RenderBuffer.h"
 
 class GBuffer: public FrameBufferObject {
 private:
-    Texture2D& mColorAttachment;
-    Texture2D& mNormalAttachment;
-    Texture2D& mPositionAttachment;
-    Texture2D& mMaterialIndexAttachment;
+    DeferredShadingTextureRegistry& mTextureRegistry;
     RenderBuffer mDepthAttachment;
 public:
-    GBuffer(Texture2D& albedoTexture, Texture2D& normalTexture, Texture2D& positionTexture, Texture2D& MaterialDataTexture);
+    explicit GBuffer(DeferredShadingTextureRegistry& textureRegistry);
 };
 
 

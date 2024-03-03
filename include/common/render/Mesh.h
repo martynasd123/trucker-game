@@ -49,11 +49,11 @@ struct Mesh {
     // List of primitive groups
     vector<Group> groups;
     // List of materials
-    vector<Material*> materials;
+    vector<shared_ptr<Material>> materials;
     // Each element maps nth material to the list of groups
     vector<GroupMapping> materialMappings;
 
-    Group const* getGroupByName(string name) {
+    Group const* getGroupByName(const string& name) const {
         for (const auto &group: groups) {
             if (group.name == name) {
                 return &group;
@@ -64,14 +64,7 @@ struct Mesh {
 
     template<typename T, typename... Args>
     void addMaterial(Args&&... args) {
-        T* ref = new T(args...);
-        materials.push_back(ref);
-    }
-
-    virtual ~Mesh() {
-        for (const auto &mat: materials) {
-            delete mat;
-        }
+        materials.push_back(make_shared<T>(args...));
     }
 };
 

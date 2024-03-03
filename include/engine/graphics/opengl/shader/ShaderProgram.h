@@ -31,7 +31,7 @@ public:
      * @param value Value of uniform
      */
     template<typename T>
-    void setUniform(string name, const T value) const;
+    void setUniform(const string& name, const T& value) const;
 
     void bindUBO(const string& name, GLuint bindingPoint) const;
 

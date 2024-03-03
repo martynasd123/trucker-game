@@ -45,8 +45,8 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(include)
 file(GLOB_RECURSE SUBDIR_SOURCES "src/*.cpp")
 add_executable(trucker_game ${SUBDIR_SOURCES} main.cpp
-        src/engine/graphics/opengl/Camera.cpp
-        include/engine/graphics/opengl/Camera.h)
+        src/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.cpp
+        include/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.h)
 
 # Copy the assets dir
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

@@ -3,27 +3,22 @@
 
 #include "RenderPass.h"
 #include "../texture/Texture2D.h"
+#include "../texture/DeferredShadingTextureRegistry.h"
 #include "../ObjectBasedBatch.h"
 #include "../texture/TextureManager.h"
 
 class LightingPass: public RenderPass {
 protected:
-    LightsUniformBufferObject<PointLight>& mPointLights;
-    Texture2D& mPositionTexture;
-    Texture2D& mNormalTexture;
-    Texture2D& mColorTexture;
-    Texture2D& mMaterialDataTexture;
-    VertexBufferObject<Vector3f> mPositions;
-    ElementBufferObject mEbo;
+    GLBufferArrayList<PointLight>& mPointLights;
+    DeferredShadingTextureRegistry& mTextureRegistry;
+    GLBufferArray<Vector3f, TIGHTLY_PACKED> mPositions;
+    GLBufferArray<unsigned int, TIGHTLY_PACKED> mEbo;
     VertexArrayObject mVao;
     MaterialHandlerRegistry& mHandlerRegistry;
     TextureManager& mTextureManager;
 public:
-    explicit LightingPass(LightsUniformBufferObject<PointLight>& lightsUbo,
-                          Texture2D& positionTexture,
-                          Texture2D& normalTexture,
-                          Texture2D& colorTexture,
-                          Texture2D& MaterialDataTexture,
+    explicit LightingPass(GLBufferArrayList<PointLight>& lightsUbo,
+                          DeferredShadingTextureRegistry& textureRegistry,
                           MaterialHandlerRegistry& handlerRegistry,
                           TextureManager& textureManager);
     void draw();

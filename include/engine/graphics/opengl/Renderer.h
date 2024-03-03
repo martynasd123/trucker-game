@@ -12,6 +12,7 @@
 #include "engine/graphics/opengl/Definitions.h"
 #include "engine/graphics/opengl/material/MaterialHandlerRegistry.h"
 #include "engine/graphics/opengl/texture/TextureManager.h"
+#include "engine/graphics/opengl/texture/DeferredShadingTextureRegistry.h"
 
 #include <queue>
 #include <type_traits>
@@ -20,22 +21,16 @@ using namespace std;
 
 class Renderer {
 private:
-    MappedVector<ObjectBasedBatch *> mBatches;
-    MappedVector<Light *> mLights;
-    queue<MeshId> mAvailableMeshIds;
-    queue<LightId> mAvailableLightIds;
+    MappedVector<shared_ptr<ObjectBasedBatch>> mBatches;
+    MappedVector<shared_ptr<Light>> mLights;
 
     Camera mCam;
 
-    MaterialHandlerRegistry &mHandlerRegistry;
-    LightsUniformBufferObject<PointLight> mPointLightsUbo;
+    MaterialHandlerRegistry mHandlerRegistry;
+    GLBufferArrayList<PointLight> mPointLightsUbo;
     TextureManager mTextureManager;
 
-    // Textures
-    Texture2D mAlbedoTexture;
-    Texture2D mPositionTexture;
-    Texture2D mNormalTexture;
-    Texture2D mMaterialDataTexture;
+    DeferredShadingTextureRegistry mDeferredShadingTextureRegistry;
 
     // Passes
     GeometryPass mGeometryPass;
@@ -43,7 +38,7 @@ private:
 public:
     explicit Renderer();
 
-    MeshId addMesh(Mesh *mesh, Transform transform);
+    MeshId addMesh(const Mesh& mesh, Transform transform);
 
     template<class T>
     LightId addLight(T light);

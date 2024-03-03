@@ -10,9 +10,9 @@ void TextureManager::begin() {
 
 }
 
-void TextureManager::addTexture(Texture &texture) {
+void TextureManager::addTexture(const Texture &texture) {
     for (int i = 1; i < mTextureSlots.size(); ++i) {
-        Texture* slot = mTextureSlots[i];
+        const Texture* slot = mTextureSlots[i];
         if (slot != nullptr && slot->getId() == texture.getId()) {
             // Texture is already set to a slot
             mReservedTextureSlots[i] = true;
@@ -43,7 +43,7 @@ void TextureManager::addTexture(Texture &texture) {
     }
 }
 
-void TextureManager::bindTexture(Texture& texture, const ShaderProgram& program, string uniform) {
+void TextureManager::bindTexture(const Texture& texture, const ShaderProgram& program, string uniform) {
     for (int i = 1; i < mTextureSlots.size(); ++i) {
         if (mTextureSlots[i] != nullptr && mTextureSlots[i]->getId() == texture.getId()) {
             program.setUniform(uniform, i);

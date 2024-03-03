@@ -1,13 +1,14 @@
 #include "engine/graphics/opengl/ObjectBasedBatch.h"
 
+#include <utility>
 #include <vector>
 
 using namespace std;
 
-void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, Mesh* mesh) {
+void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, const Mesh& mesh) {
     if (materialType == "bp-monochromatic") {
-        auto materialBatch = new MaterialBasedBatch(mesh, mHandlerRegistry.getHandler(materialType));
-        mMaterialBatches.push_back(dynamic_cast<MaterialBasedBatch*>(materialBatch));
+        auto materialBatch = make_shared<MaterialBasedBatch<BPMonochromaticMaterial>>(mesh, mHandlerRegistry.getHandler(materialType));
+        mMaterialBatches.push_back(materialBatch);
     } else if (materialType == "bp-textured") {
         // TODO
     } else {
@@ -15,11 +16,11 @@ void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, Mesh
     }
 }
 
-ObjectBasedBatch::ObjectBasedBatch(Mesh *mesh, Transform transform, MaterialHandlerRegistry& registry): mTransform(transform), mHandlerRegistry(registry) {
-    vector<Material*> materials(mesh->materials);
+ObjectBasedBatch::ObjectBasedBatch(const Mesh& mesh, Transform transform, MaterialHandlerRegistry& registry): mTransform(std::move(transform)), mHandlerRegistry(registry) {
+    vector<shared_ptr<Material>> materials(mesh.materials);
 
     // Sort materials by type
-    sort(materials.begin(), materials.end(), [](Material* mat1, Material* mat2) {
+    sort(materials.begin(), materials.end(), [](const shared_ptr<Material>& mat1, const shared_ptr<Material>& mat2) {
         return mat1->getTypeString() > mat2->getTypeString();
     });
 
@@ -40,6 +41,6 @@ const Transform &ObjectBasedBatch::getTransform() const {
     return mTransform;
 }
 
-const vector<MaterialBasedBatch *> &ObjectBasedBatch::getMaterialBatches() const {
+const vector<shared_ptr<MaterialBasedBatchBase>> &ObjectBasedBatch::getMaterialBatches() const {
     return mMaterialBatches;
 }

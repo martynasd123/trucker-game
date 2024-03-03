@@ -1,14 +1,10 @@
 #include "engine/graphics/opengl/pass/GeometryPass.h"
-#include "engine/Globals.h"
-#include "engine/resource/resolver/TextResourceResolver.h"
 #include "engine/graphics/opengl/shader/VertexShader.h"
-#include "engine/graphics/opengl/shader/FragmentShader.h"
 #include "common/math/Matrix4f.h"
 
-GeometryPass::GeometryPass(Texture2D &albedoTexture, Texture2D &normalTexture, Texture2D &positionTexture, Texture2D &MaterialDataTexture, Camera& cam) :
-        mGBuffer(new GBuffer(albedoTexture, normalTexture, positionTexture, MaterialDataTexture)),
+GeometryPass::GeometryPass(DeferredShadingTextureRegistry& textureRegistry, Camera& cam) :
+        mGBuffer(make_unique<GBuffer>(textureRegistry)),
          mCam(cam){
-    GL_UTIL::checkError();
 }
 
 static float x = 0.0f;

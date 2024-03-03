@@ -11,7 +11,7 @@ using namespace std;
 
 class TextureManager {
 protected:
-    vector<Texture*> mTextureSlots;
+    vector<const Texture*> mTextureSlots;
     vector<bool> mReservedTextureSlots;
     GLint mMaxTextureSlots;
 public:
@@ -19,11 +19,11 @@ public:
 
     void begin();
 
-    void addTexture(Texture& texture);
+    void addTexture(const Texture& texture);
 
-    GLuint getTextureSlot(Texture& texture);
+    GLuint getTextureSlot(Texture& texture) const;
 
-    void bindTexture(Texture& texture, const ShaderProgram& program, string uniform);
+    void bindTexture(const Texture& texture, const ShaderProgram& program, string uniform);
 
     void end();
 };

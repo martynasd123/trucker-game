@@ -3,6 +3,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <memory>
 
 #include "engine/Globals.h"
 #include "engine/ecs/System.h"
@@ -12,13 +13,14 @@
 
 class OpenGLRenderingSystem: public System<PositionComponent, RenderComponent> {
 private:
-    GLFWwindow* mWindow {};
-    Renderer* mRenderer{};
+    GLFWwindow* mWindow;
+    unique_ptr<Renderer> mRenderer;
 public:
     void init() override;
     void update(long dt, std::vector<Entity> entities) override;
     void entityRemoved(Entity entity) override;
     void entityAdded(Entity entity) override;
+    ~OpenGLRenderingSystem();
 };
 
 

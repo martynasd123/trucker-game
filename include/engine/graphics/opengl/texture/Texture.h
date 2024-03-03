@@ -2,15 +2,16 @@
 #define TRUCKER_GAME_TEXTURE_H
 
 #include <glad/glad.h>
+#include <memory>
 
 class Texture {
 protected:
     GLuint mTarget{};
-    GLuint mId{};
+    std::shared_ptr<GLuint> mId;
     Texture();
 public:
-    void bind();
-    void unbind();
+    void bind() const;
+    void unbind() const;
     void setParameter(GLenum name, GLint value);
     [[nodiscard]] GLuint getId() const;
 };

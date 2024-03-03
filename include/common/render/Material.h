@@ -6,9 +6,7 @@
 struct Material {
     virtual std::string getTypeString() = 0;
 
-    virtual ~Material() {
-
-    }
+    virtual ~Material() = default;
 };
 
 struct BPMonochromaticMaterial: public Material {

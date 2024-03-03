@@ -5,15 +5,10 @@
 #include "engine/resource/MeshResource.h"
 
 struct RenderComponent {
-    Mesh* mesh{};
+    shared_ptr<Mesh> mesh;
     RenderComponent() = default;
 
-    explicit RenderComponent(MeshResource* meshResource) : mesh(new Mesh(*meshResource->mesh)) { }
-
-    virtual ~RenderComponent() {
-        delete mesh;
-        mesh = nullptr;
-    }
+    explicit RenderComponent(MeshResource* meshResource) : mesh(meshResource->mesh) { }
 };
 
 

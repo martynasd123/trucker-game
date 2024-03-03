@@ -23,25 +23,17 @@ void OpenGLRenderingSystem::init() {
         exit(1);
     }
 
-//    int width, height;
-//    glfwGetFramebufferSize(mWindow, &width, &height);
     glEnable(GL_DEPTH_TEST);
 
-    mRenderer = new Renderer();
-//    mRenderer->addLight(PointLight(Vector3f(0.1f, 0.1f, 0.1f),
-//                                   Vector3f(0.5f, 0.5f, 1.0f),
-//                                   Vector3f(1.0f, 1.0f, 1.0f),
-//                                   Vector3f(5.0f, 0.0f, 10.0f),
-//                                   1.0f,
-//                                   0.09f,
-//                                   0.032f));
-    mRenderer->addLight(PointLight(Vector3f(0.05f, 0.05f, 0.05f),
+    mRenderer = make_unique<Renderer>();
+    LightId l1 = mRenderer->addLight(PointLight(Vector3f(0.05f, 0.05f, 0.05f),
                                    Vector3f(1.0f, 1.0f, 1.0f),
                                    Vector3f(1.0f, 1.0f, 1.0f),
                                    Vector3f(0.0f, 0.0f, 0.0f),
                                    1.0f,
                                    0.09f,
                                    0.032f));
+
 }
 
 void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) {
@@ -66,5 +58,9 @@ void OpenGLRenderingSystem::entityAdded(Entity entity) {
     }
 
     auto transform = Transform(Quaternion::IDENTITY, positionComponent->pos, Vector3f(1.0f, 1.0f, 1.0f));
-    mRenderer->addMesh(renderComponent->mesh, transform);
+    mRenderer->addMesh(*renderComponent->mesh, transform);
+}
+
+OpenGLRenderingSystem::~OpenGLRenderingSystem() {
+    glfwTerminate();
 }

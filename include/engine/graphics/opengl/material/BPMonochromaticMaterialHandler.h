@@ -3,15 +3,11 @@
 
 #include "MaterialHandlerBase.h"
 
-class BPMonochromaticMaterialHandler: public MaterialHandlerBase<BPMonochromaticMaterial> {
+class BPMonochromaticMaterialHandler: public MaterialHandlerBase {
 public:
     explicit BPMonochromaticMaterialHandler(ResourceManager &resManager);
 
-    std::string getMaterialTypeName() const override;
-
-    unsigned int getUBOMaterialSize() const override;
-
-    void writeToUniformBuffer(vector<BPMonochromaticMaterial> materials, int offset, BufferObjectBase& buff) const override;
+    [[nodiscard]] std::string getMaterialTypeName() const override;
 
 };
 

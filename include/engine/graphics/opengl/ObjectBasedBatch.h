@@ -10,18 +10,18 @@
 class ObjectBasedBatch: public Batch {
 private:
     Transform mTransform;
-    vector<MaterialBasedBatch*> mMaterialBatches;
+    vector<shared_ptr<MaterialBasedBatchBase>> mMaterialBatches;
     MaterialHandlerRegistry& mHandlerRegistry;
 
-    void createMaterialBasedBatch(const string& materialType, Mesh* mesh);
+    void createMaterialBasedBatch(const string& materialType, const Mesh& mesh);
 public:
-    ObjectBasedBatch(Mesh* mesh, Transform transform, MaterialHandlerRegistry& registry);
+    ObjectBasedBatch(const Mesh& mesh, Transform transform, MaterialHandlerRegistry& registry);
 
     void setTransform(const Transform transform);
 
     const Transform &getTransform() const;
 
-    const vector<MaterialBasedBatch *> &getMaterialBatches() const;
+    const vector<shared_ptr<MaterialBasedBatchBase>> &getMaterialBatches() const;
 
 
 };
