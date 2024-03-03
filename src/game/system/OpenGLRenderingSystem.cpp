@@ -10,12 +10,19 @@ void OpenGLRenderingSystem::init() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    mWindow = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "This is definitely a window", NULL, NULL);
+    mWindow = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "This is definitely a window", nullptr, nullptr);
     if (mWindow == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         exit(1);
     }
+
+    int width, height;
+    glfwGetFramebufferSize(mWindow, &width, &height);
+
+    glfwSetWindowUserPointer(mWindow, this);
+    glfwSetFramebufferSizeCallback(mWindow, frameBufferSizeCallback);
+
     glfwMakeContextCurrent(mWindow);
 
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
@@ -25,7 +32,7 @@ void OpenGLRenderingSystem::init() {
 
     glEnable(GL_DEPTH_TEST);
 
-    mRenderer = make_unique<Renderer>();
+    mRenderer = make_unique<Renderer>(width, height);
     LightId l1 = mRenderer->addLight(PointLight(Vector3f(0.05f, 0.05f, 0.05f),
                                    Vector3f(1.0f, 1.0f, 1.0f),
                                    Vector3f(1.0f, 1.0f, 1.0f),
@@ -35,6 +42,12 @@ void OpenGLRenderingSystem::init() {
                                    0.032f));
 
 }
+
+void OpenGLRenderingSystem::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
+    OpenGLRenderingSystem& system = *static_cast<OpenGLRenderingSystem*>(glfwGetWindowUserPointer(window));
+    system.frameBufferSizeUpdated(width, height);
+}
+
 
 void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) {
     if (glfwWindowShouldClose(mWindow)) {
@@ -62,5 +75,10 @@ void OpenGLRenderingSystem::entityAdded(Entity entity) {
 }
 
 OpenGLRenderingSystem::~OpenGLRenderingSystem() {
+    glfwDestroyWindow(mWindow);
     glfwTerminate();
+}
+
+void OpenGLRenderingSystem::frameBufferSizeUpdated(int width, int height) {
+    mRenderer->frameBufferSizeUpdated(width, height);
 }

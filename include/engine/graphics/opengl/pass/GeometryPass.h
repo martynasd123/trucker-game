@@ -16,8 +16,10 @@ protected:
     unique_ptr<GBuffer> mGBuffer;
     Camera& mCam;
 public:
-    GeometryPass(DeferredShadingTextureRegistry& textureRegistry, Camera& cam);
+    GeometryPass(DeferredShadingTextureRegistry& textureRegistry, Camera& cam, int width, int height);
     void draw(ObjectBasedBatch& batch);
+
+    void updateDimensions(int width, int height);
 };
 
 

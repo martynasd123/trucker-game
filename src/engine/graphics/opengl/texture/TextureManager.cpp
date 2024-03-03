@@ -56,3 +56,13 @@ void TextureManager::end() {
         mReservedTextureSlots[i] = false;
     }
 }
+
+void TextureManager::forgetTexture(const Texture &texture) {
+    for (int i = 1; i < mTextureSlots.size(); ++i) {
+        const Texture* slot = mTextureSlots[i];
+        if (slot != nullptr && slot->getId() == texture.getId()) {
+            mTextureSlots[i] = nullptr;
+            return;
+        }
+    }
+}

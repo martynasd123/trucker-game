@@ -25,6 +25,8 @@ public:
 
     void bindTexture(const Texture& texture, const ShaderProgram& program, string uniform);
 
+    void forgetTexture(const Texture& texture);
+
     void end();
 };
 

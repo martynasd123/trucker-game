@@ -10,8 +10,10 @@ class GBuffer: public FrameBufferObject {
 private:
     DeferredShadingTextureRegistry& mTextureRegistry;
     RenderBuffer mDepthAttachment;
+    void configureFrameBuffer();
 public:
-    explicit GBuffer(DeferredShadingTextureRegistry& textureRegistry);
+    explicit GBuffer(DeferredShadingTextureRegistry& textureRegistry, int width, int height);
+    void updateDimensions(int width, int height);
 };
 
 

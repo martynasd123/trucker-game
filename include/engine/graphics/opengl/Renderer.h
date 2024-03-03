@@ -36,7 +36,7 @@ private:
     GeometryPass mGeometryPass;
     LightingPass mLightingPass;
 public:
-    explicit Renderer();
+    explicit Renderer(int width, int height);
 
     MeshId addMesh(const Mesh& mesh, Transform transform);
 
@@ -50,6 +50,8 @@ public:
     void updateTransform(MeshId id, Transform transform);
 
     void draw();
+
+    void frameBufferSizeUpdated(int width, int height);
 };
 
 #endif //TRUCKER_GAME_RENDERER_H

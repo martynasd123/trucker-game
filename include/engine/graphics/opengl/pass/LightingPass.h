@@ -20,8 +20,11 @@ public:
     explicit LightingPass(GLBufferArrayList<PointLight>& lightsUbo,
                           DeferredShadingTextureRegistry& textureRegistry,
                           MaterialHandlerRegistry& handlerRegistry,
-                          TextureManager& textureManager);
+                          TextureManager& textureManager,
+                          int width, int height);
     void draw();
+
+    void updateDimensions(int width, int height);
 };
 
 

@@ -2,8 +2,8 @@
 #include "engine/graphics/opengl/shader/VertexShader.h"
 #include "common/math/Matrix4f.h"
 
-GeometryPass::GeometryPass(DeferredShadingTextureRegistry& textureRegistry, Camera& cam) :
-        mGBuffer(make_unique<GBuffer>(textureRegistry)),
+GeometryPass::GeometryPass(DeferredShadingTextureRegistry& textureRegistry, Camera& cam, int width, int height) :
+        mGBuffer(make_unique<GBuffer>(textureRegistry, width, height)),
          mCam(cam){
 }
 
@@ -44,4 +44,8 @@ void GeometryPass::draw(ObjectBasedBatch& batch) {
         materialBatch->draw();
 
     }
+}
+
+void GeometryPass::updateDimensions(int width, int height) {
+    mGBuffer->updateDimensions(width, height);
 }

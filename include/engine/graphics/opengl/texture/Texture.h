@@ -14,6 +14,7 @@ public:
     void unbind() const;
     void setParameter(GLenum name, GLint value);
     [[nodiscard]] GLuint getId() const;
+    virtual ~Texture() = default;
 };
 
 

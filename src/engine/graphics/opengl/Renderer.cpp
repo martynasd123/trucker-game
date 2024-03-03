@@ -18,13 +18,14 @@ float toRadians(float deg) {
     return deg * (((float) M_PI) / 180.0f);
 }
 
-Renderer::Renderer() : mHandlerRegistry(),
-                       mPointLightsUbo(UNIFORM_BUFFER, 20, DYNAMIC_DRAW),
-                       mDeferredShadingTextureRegistry(WINDOW_WIDTH, WINDOW_HEIGHT),
-                       mGeometryPass(mDeferredShadingTextureRegistry, mCam),
-                       mLightingPass(mPointLightsUbo, mDeferredShadingTextureRegistry, mHandlerRegistry, mTextureManager),
-                       mTextureManager(),
-                       mCam() {
+Renderer::Renderer(int width, int height) :
+        mHandlerRegistry(),
+        mPointLightsUbo(UNIFORM_BUFFER, 20, DYNAMIC_DRAW),
+        mDeferredShadingTextureRegistry(width, height),
+        mGeometryPass(mDeferredShadingTextureRegistry, mCam, width, height),
+        mLightingPass(mPointLightsUbo, mDeferredShadingTextureRegistry, mHandlerRegistry, mTextureManager, width, height),
+        mTextureManager(),
+        mCam() {
     mCam.setProjection(
             Matrix4f::perspective(toRadians(60.0f), ((float) WINDOW_WIDTH) / ((float) WINDOW_HEIGHT), 100.0f, 0.1f));
     mCam.setView(Matrix4f::translation(0.0f, 0.0f, 5.0f));
@@ -54,4 +55,14 @@ LightId Renderer::removeLight(LightId id) {
     mPointLightsUbo.removeElement(mLights.getIndex(id));
     mLights.eraseById(id);
     return id;
+}
+
+void Renderer::frameBufferSizeUpdated(int width, int height) {
+    mTextureManager.forgetTexture(mDeferredShadingTextureRegistry.getMaterialDataTexture());
+    mTextureManager.forgetTexture(mDeferredShadingTextureRegistry.getAlbedoTexture());
+    mTextureManager.forgetTexture(mDeferredShadingTextureRegistry.getPositionTexture());
+    mTextureManager.forgetTexture(mDeferredShadingTextureRegistry.getNormalTexture());
+    mDeferredShadingTextureRegistry.updateDimensions(width, height);
+    mGeometryPass.updateDimensions(width, height);
+    mLightingPass.updateDimensions(width, height);
 }

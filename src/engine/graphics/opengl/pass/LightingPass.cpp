@@ -6,7 +6,8 @@
 LightingPass::LightingPass(GLBufferArrayList<PointLight> &lightsUbo,
                            DeferredShadingTextureRegistry &textureRegistry,
                            MaterialHandlerRegistry &handlerRegistry,
-                           TextureManager &textureManager) : mPointLights(lightsUbo),
+                           TextureManager &textureManager,
+                           int width, int height) : mPointLights(lightsUbo),
                                                              mPositions(ARRAY_BUFFER, 4, STATIC_DRAW),
                                                              mVao(VertexArrayObject()),
                                                              mHandlerRegistry(handlerRegistry),
@@ -29,8 +30,6 @@ LightingPass::LightingPass(GLBufferArrayList<PointLight> &lightsUbo,
 
 void LightingPass::draw() {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
-    glViewport(0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
     glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -61,4 +60,9 @@ void LightingPass::draw() {
     mVao.unbind();
 
     mTextureManager.end();
+}
+
+void LightingPass::updateDimensions(int width, int height) {
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    glViewport(0, 0, width, height);
 }

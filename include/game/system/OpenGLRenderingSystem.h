@@ -15,6 +15,9 @@ class OpenGLRenderingSystem: public System<PositionComponent, RenderComponent> {
 private:
     GLFWwindow* mWindow;
     unique_ptr<Renderer> mRenderer;
+
+    static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
+    void frameBufferSizeUpdated(int width, int height);
 public:
     void init() override;
     void update(long dt, std::vector<Entity> entities) override;
