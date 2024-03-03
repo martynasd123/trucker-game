@@ -43,7 +43,10 @@ vec3 calculatePointLight(PointLight light, vec3 normal, vec3 albedo, vec3 positi
     vec3 specular = pow(max(dot(direction, reflectDir), 0.0), mat.shininess) * light.specular;
     vec3 ambient = mat.ambient * light.ambient;
 
-    return albedo * (diffuse + ambient + specular);
+    float distance    = length(light.position - position);
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
+
+    return albedo * ((diffuse + ambient + specular) * attenuation);
 }
 
 void main() {
