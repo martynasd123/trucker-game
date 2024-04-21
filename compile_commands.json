@@ -1,0 +1,212 @@
+[
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/common/math/Matrix4f.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Matrix4f.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Matrix4f.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/common/math/Matrix4f.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/common/math/Quaternion.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Quaternion.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Quaternion.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/common/math/Quaternion.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/common/math/Vector2f.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector2f.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector2f.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/common/math/Vector2f.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/common/math/Vector3f.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector3f.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector3f.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/common/math/Vector3f.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/common/math/Vector4f.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector4f.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/common/math/Vector4f.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/common/math/Vector4f.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/ecs/Component.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/ecs/Component.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/ecs/Component.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/ecs/Component.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/ecs/ECS.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/ecs/ECS.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/ecs/ECS.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/ecs/ECS.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/Camera.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/Camera.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/Camera.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/Camera.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/ObjectBasedBatch.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/ObjectBasedBatch.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/ObjectBasedBatch.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/ObjectBasedBatch.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/Renderer.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/Renderer.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/Renderer.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/Renderer.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/VertexArrayObject.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/VertexArrayObject.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/VertexArrayObject.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/VertexArrayObject.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/FrameBufferObject.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/FrameBufferObject.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/FrameBufferObject.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/FrameBufferObject.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/GBuffer.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/GBuffer.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/GBuffer.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/GBuffer.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/RenderBuffer.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/RenderBuffer.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/buffer/RenderBuffer.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/buffer/RenderBuffer.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/BPMonochromaticMaterialHandler.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/BPMonochromaticMaterialHandler.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/BPMonochromaticMaterialHandler.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/BPMonochromaticMaterialHandler.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/MaterialBasedBatch.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/MaterialBasedBatch.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/MaterialBasedBatch.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/MaterialBasedBatch.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/MaterialHandlerRegistry.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/MaterialHandlerRegistry.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/material/MaterialHandlerRegistry.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/material/MaterialHandlerRegistry.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/pass/GeometryPass.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/pass/GeometryPass.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/pass/GeometryPass.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/pass/GeometryPass.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/pass/LightingPass.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/pass/LightingPass.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/pass/LightingPass.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/pass/LightingPass.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/FragmentShader.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/FragmentShader.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/FragmentShader.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/FragmentShader.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/Shader.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/Shader.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/Shader.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/Shader.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/ShaderProgram.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/ShaderProgram.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/ShaderProgram.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/ShaderProgram.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/VertexShader.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/VertexShader.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/shader/VertexShader.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/shader/VertexShader.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/DeferredShadingTextureRegistry.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/Texture.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/Texture.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/Texture.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/Texture.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/Texture2D.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/Texture2D.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/Texture2D.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/Texture2D.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/TextureManager.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/TextureManager.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/texture/TextureManager.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/texture/TextureManager.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/util/GLUtils.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/util/GLUtils.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/util/GLUtils.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/util/GLUtils.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/util/MappedVector.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/util/MappedVector.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/graphics/opengl/util/MappedVector.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/graphics/opengl/util/MappedVector.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/resource/Resource.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/Resource.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/Resource.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/resource/Resource.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/resource/manager/ResourceManager.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/manager/ResourceManager.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/manager/ResourceManager.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/resource/manager/ResourceManager.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/resource/resolver/MeshResourceResolver.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/resolver/MeshResourceResolver.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/resolver/MeshResourceResolver.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/resource/resolver/MeshResourceResolver.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/engine/resource/resolver/TextResourceResolver.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/resolver/TextResourceResolver.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/engine/resource/resolver/TextResourceResolver.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/engine/resource/resolver/TextResourceResolver.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/src/game/system/OpenGLRenderingSystem.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/src/game/system/OpenGLRenderingSystem.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/src/game/system/OpenGLRenderingSystem.cpp",
+  "output": "CMakeFiles/trucker_game.dir/src/game/system/OpenGLRenderingSystem.cpp.o"
+},
+{
+  "directory": "/Users/martynasdargis/CLionProjects/trucker-game",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/martynasdargis/CLionProjects/trucker-game/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glfw-src/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/glad-build/include -I/Users/martynasdargis/CLionProjects/trucker-game/_deps/json-src/include -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -o CMakeFiles/trucker_game.dir/main.cpp.o -c /Users/martynasdargis/CLionProjects/trucker-game/main.cpp",
+  "file": "/Users/martynasdargis/CLionProjects/trucker-game/main.cpp",
+  "output": "CMakeFiles/trucker_game.dir/main.cpp.o"
+}
+]

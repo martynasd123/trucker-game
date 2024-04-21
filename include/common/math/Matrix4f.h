@@ -82,7 +82,7 @@ public:
      */
     [[nodiscard]] Matrix4f transposed() const;
 
-    void toString() const {
+    string toString() const {
         string acc;
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -91,6 +91,7 @@ public:
             }
             acc += "\n";
         }
+        return acc;
     }
 
     /**

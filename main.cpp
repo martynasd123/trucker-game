@@ -1,8 +1,9 @@
 #include "engine/ecs/ECS.h"
-#include "game/component/PositionComponent.h"
 #include "game/component/RenderComponent.h"
 #include "game/system/OpenGLRenderingSystem.h"
+#include "game/system/RotationSystem.h"
 #include "common/math/Vector3f.h"
+#include "common/math/Quaternion.h"
 #include "engine/resource/manager/ResourceManager.h"
 #include "engine/resource/TextResource.h"
 #include "engine/resource/resolver/TextResourceResolver.h"
@@ -24,38 +25,41 @@ void loop() {
     auto renderTime = high_resolution_clock::now();
     while (true) {
         auto currentTime = high_resolution_clock::now();
-        while (currentTime <= gameTime) {
+        while (currentTime >= gameTime) {
             gameTime += TIME_PER_STEP;
             ecs->runSystems(PHYSICS_LAYER | GAME_LOGIC_LAYER,
                             duration_cast<duration<float>>(TIME_PER_STEP).count());
         }
         currentTime = high_resolution_clock::now();
         if (currentTime - renderTime < TARGET_RENDER_PERIOD) {
+            cout << "Sleeping for " << duration_cast<duration<float>>((renderTime + TARGET_RENDER_PERIOD) - currentTime).count() << "ms" << endl;
             std::this_thread::sleep_for((renderTime + TARGET_RENDER_PERIOD) - currentTime);
             currentTime = high_resolution_clock::now();
         }
+        cout << "FPS: " << 1.0f / duration_cast<duration<float>>(currentTime - renderTime).count() << endl;
         ecs->runSystems(COSMETIC_LAYER, duration_cast<duration<float>>(currentTime - renderTime).count());
         renderTime = currentTime;
     }
-}
-
-float ttoRadians(float deg) {
-    return deg * (((float)M_PI) / 180.0f);
 }
 
 int main() {
     resourceManager->registerResourceResolver<TextResourceResolver, TextResource>();
     resourceManager->registerResourceResolver<MeshResourceResolver, MeshResource>();
 
-    ecs->registerComponent<PositionComponent>();
+    ecs->registerComponent<TransformComponent>();
     ecs->registerComponent<RenderComponent>();
 
     auto openGLSystem = new OpenGLRenderingSystem;
     ecs->registerSystem(COSMETIC_LAYER, openGLSystem);
+    auto rotationSystem = new RotationSystem;
+    ecs->registerSystem(GAME_LOGIC_LAYER, rotationSystem);
     openGLSystem->init();
 
+    Vector3f pos = {0.0f, 0.0f, 0.0f};
+    Vector3f scale = {1.0f, 1.0f, 1.0f};
+
     Entity e1 = ecs->createEntity();
-    ecs->addComponent<PositionComponent>(e1, Vector3f{0.0f, 0.0f, 0.0f});
+    ecs->addComponent<TransformComponent>(e1, pos, Quaternion::IDENTITY, scale);
 
     auto handle = resourceManager->acquireHandle<MeshResource>("assets/meshes/pedestal.mesh");
     auto mesh = resourceManager->getResource<MeshResource>(handle);
@@ -66,10 +70,7 @@ int main() {
     loop();
 
     delete ecs;
+    delete rotationSystem;
     return 0;
 
-//    Vector4f vec = Vector4f(0.0f, 0.0f, 15.0f, 1.0f) * Matrix4f::perspective(ttoRadians(60.0f), ((float)WINDOW_WIDTH) / ((float)WINDOW_HEIGHT), 100.0f, 0.1f);
-//    Vector3f normalized = Vector3f(vec.getX() / vec.getW(), vec.getY() / vec.getW(), vec.getZ() / vec.getW());
-//    cout << vec.getX() << " " << vec.getY() << " " << vec.getZ() << " " << vec.getW() << endl;
-//    cout << normalized.getX() << " " << normalized.getY() << " " << normalized.getZ() << endl;
 }

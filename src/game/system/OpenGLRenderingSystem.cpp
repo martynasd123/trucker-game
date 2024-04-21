@@ -53,25 +53,33 @@ void OpenGLRenderingSystem::update(long dt, const std::vector<Entity> entities) 
     if (glfwWindowShouldClose(mWindow)) {
         exit(0);
     }
+
+    // Loop through entities to check if transform needs to be updated for any of them
+    for (const auto &entity: entities) {
+        auto transform = ecs->getComponent<TransformComponent>(entity);
+        if (transform->is_dirty) {
+            mRenderer->updateTransform(mEntityMeshIds[entity], Transform(*transform->orientation, *transform->position, *transform->scale));
+            transform->is_dirty = false;
+        }
+    }
     mRenderer->draw();
     glfwSwapBuffers(mWindow);
     glfwPollEvents();
 }
 
 void OpenGLRenderingSystem::entityRemoved(Entity entity) {
-    std::cout << "Entity removed" << std::endl;
 }
 
 void OpenGLRenderingSystem::entityAdded(Entity entity) {
-    std::cout << "Entity added" << std::endl;
     auto renderComponent = ecs->getComponent<RenderComponent>(entity);
-    auto positionComponent = ecs->getComponent<PositionComponent>(entity);
-    if (!positionComponent || !renderComponent || !renderComponent->mesh) {
+    auto transformComponent = ecs->getComponent<TransformComponent>(entity);
+    if (!transformComponent || !renderComponent || !renderComponent->mesh) {
         return;
     }
 
-    auto transform = Transform(Quaternion::IDENTITY, positionComponent->pos, Vector3f(1.0f, 1.0f, 1.0f));
-    mRenderer->addMesh(*renderComponent->mesh, transform);
+    auto transform = Transform(*transformComponent->orientation, *transformComponent->position, *transformComponent->scale);
+    auto id = mRenderer->addMesh(*renderComponent->mesh, transform);
+    mEntityMeshIds.emplace(entity, id);
 }
 
 OpenGLRenderingSystem::~OpenGLRenderingSystem() {

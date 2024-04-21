@@ -10,6 +10,7 @@
 class ObjectBasedBatch: public Batch {
 private:
     Transform mTransform;
+    Matrix4f mModel;
     vector<shared_ptr<MaterialBasedBatchBase>> mMaterialBatches;
     MaterialHandlerRegistry& mHandlerRegistry;
 
@@ -23,7 +24,7 @@ public:
 
     const vector<shared_ptr<MaterialBasedBatchBase>> &getMaterialBatches() const;
 
-
+    const Matrix4f &getModel() const;
 };
 
 

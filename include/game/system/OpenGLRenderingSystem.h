@@ -7,14 +7,20 @@
 
 #include "engine/Globals.h"
 #include "engine/ecs/System.h"
-#include "game/component/PositionComponent.h"
 #include "game/component/RenderComponent.h"
 #include "engine/graphics/opengl/Renderer.h"
+#include <game/component/TransformComponent.h>
 
-class OpenGLRenderingSystem: public System<PositionComponent, RenderComponent> {
+class OpenGLRenderingSystem: public System<TransformComponent, RenderComponent> {
 private:
     GLFWwindow* mWindow;
     unique_ptr<Renderer> mRenderer;
+
+    /**
+     * Entity to mesh handle map. This is where we keep handles returned by the renderer that
+     * correspond to the engine entities.
+     */
+    unordered_map<Entity, MeshId> mEntityMeshIds;
 
     static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
     void frameBufferSizeUpdated(int width, int height);

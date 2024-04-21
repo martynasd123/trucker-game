@@ -5,9 +5,10 @@
 
 using namespace std;
 
-void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, const Mesh& mesh) {
+void ObjectBasedBatch::createMaterialBasedBatch(const string &materialType, const Mesh &mesh) {
     if (materialType == "bp-monochromatic") {
-        auto materialBatch = make_shared<MaterialBasedBatch<BPMonochromaticMaterial>>(mesh, mHandlerRegistry.getHandler(materialType));
+        auto materialBatch = make_shared<MaterialBasedBatch<BPMonochromaticMaterial>>(mesh, mHandlerRegistry.getHandler(
+                materialType));
         mMaterialBatches.push_back(materialBatch);
     } else if (materialType == "bp-textured") {
         // TODO
@@ -16,11 +17,13 @@ void ObjectBasedBatch::createMaterialBasedBatch(const string& materialType, cons
     }
 }
 
-ObjectBasedBatch::ObjectBasedBatch(const Mesh& mesh, Transform transform, MaterialHandlerRegistry& registry): mTransform(std::move(transform)), mHandlerRegistry(registry) {
+ObjectBasedBatch::ObjectBasedBatch(const Mesh &mesh, Transform transform, MaterialHandlerRegistry &registry)
+        : mTransform(std::move(transform)),mHandlerRegistry(registry),
+          mModel(transform.computeModelMatrix()){
     vector<shared_ptr<Material>> materials(mesh.materials);
 
     // Sort materials by type
-    sort(materials.begin(), materials.end(), [](const shared_ptr<Material>& mat1, const shared_ptr<Material>& mat2) {
+    sort(materials.begin(), materials.end(), [](const shared_ptr<Material> &mat1, const shared_ptr<Material> &mat2) {
         return mat1->getTypeString() > mat2->getTypeString();
     });
 
@@ -35,6 +38,7 @@ ObjectBasedBatch::ObjectBasedBatch(const Mesh& mesh, Transform transform, Materi
 
 void ObjectBasedBatch::setTransform(const Transform transform) {
     this->mTransform = transform;
+    this->mModel = transform.computeModelMatrix();
 }
 
 const Transform &ObjectBasedBatch::getTransform() const {
@@ -43,4 +47,8 @@ const Transform &ObjectBasedBatch::getTransform() const {
 
 const vector<shared_ptr<MaterialBasedBatchBase>> &ObjectBasedBatch::getMaterialBatches() const {
     return mMaterialBatches;
+}
+
+const Matrix4f &ObjectBasedBatch::getModel() const {
+    return mModel;
 }

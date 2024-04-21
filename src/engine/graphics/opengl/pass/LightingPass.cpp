@@ -1,5 +1,4 @@
 #include "engine/graphics/opengl/pass/LightingPass.h"
-#include "engine/Globals.h"
 
 #include "vector"
 
